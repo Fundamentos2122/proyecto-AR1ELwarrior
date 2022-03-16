@@ -1,0 +1,118 @@
+*{
+    box-sizing: border-box;
+    font-family: 'Century Gothic';
+}
+
+html,body{
+    margin: 0;
+    padding: 0;
+}
+body{
+     background-image: url("fondo1.jfif");
+     background-position: center center;
+     background-size: cover;
+     background-repeat: no-repeat;
+     background-attachment: fixed;
+}
+
+.header{
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    background-color: rgba(57, 93, 97, 0.774);
+    column-gap: 1em;
+}
+.title{
+    font-size: 3.2em;
+    margin-left: .5em;
+}
+.img{
+width: 8em;
+height: 8em;
+}
+.description{
+    display: flex;
+    font-size: 3.2em;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    padding: 1em;
+    color: white;
+}
+
+.botones{
+    display: flex;
+    gap: 1em;
+    flex-direction: column;
+    padding: 4em;
+    align-items: center;
+    row-gap: 3em;
+}
+
+
+.btn{
+    width: 25%;
+    font-size: 1.5em;
+    padding: .5em;
+}
+.button, .button1{
+    width: 80%;
+    font-size: 2em;
+    padding: .5em;
+}
+
+.button, .button1, .btn{
+    border-radius: 10px;
+    color: white;
+    background-color: rgb(19, 34, 36);
+    font-weight: bold;
+    border-style: solid;
+    border-color: black;
+}
+.button:hover, .button1:hover, .btn:hover{
+    background-color: rgb(86, 122, 126);
+    color: black;
+
+}
+@media (min-width: 780px){/*CUAND SE VE EN COMPU*/
+
+    .btn{
+        display: none;
+    }
+    .img{
+        width: 5em;
+        height: 5em;
+    }
+    .description{
+        padding: 1em;
+        font-size: 3em;
+    }
+    .botones{
+        padding: 0.5em;
+        row-gap: 1.5em;
+    }
+    .button, .button1{
+        width: 35%;
+        font-size: 2em;
+        padding: .5em;
+    }
+    .header{
+        width: 100%;
+        font-size: 2em;
+        text-align: center;
+        column-gap: 0;
+    }
+    .title{
+        width: 80%;
+    }
+    
+}
+
+
+
+
+@media (max-width: 780px){/*CUAND SE VE EN COMPU*/
+    .button1{
+        display: none;
+    } 
+}
