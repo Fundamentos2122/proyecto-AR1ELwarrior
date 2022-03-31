@@ -9,7 +9,7 @@ html,body{
     color: white;
 }
 body{
-     background-image: url("fondo1.jfif");
+     background-image: url("imgs/fondo1.jfif");
      background-position: center center;
      background-size: cover;
      background-repeat: no-repeat;
@@ -81,6 +81,12 @@ input[type= "submit"]:hover{
     background-color: rgb(86, 122, 126);
     color: black;
 }
+a{
+    width: 100%;
+}
+.regist{
+    width: 100%;
+}
 @media (min-width: 780px){/*CUAND SE VE EN COMPU*/
     body{
         display: flex;
@@ -99,7 +105,7 @@ input[type= "submit"]:hover{
         text-align: center;
         font-size: 2em;
     }
-    .tilte{
+    .title{
         width: 100%;
         text-align: center;
     }
