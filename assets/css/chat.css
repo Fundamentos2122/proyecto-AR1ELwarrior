@@ -1,0 +1,345 @@
+*{
+    box-sizing: border-box;
+    font-family: 'Century Gothic';
+}
+
+html,body{
+    margin: 0;
+}
+body{
+    background-color: rgb(28, 37, 41);
+}
+.minimenu{
+    border-top: solid .1em black;
+    border-bottom:solid .1em black;
+    display: flex;
+    font-size: 1.5em;
+    border-radius: 10px;
+    text-align: center;
+    justify-content: space-around;
+    background-color: black ;
+}
+.micon:hover{
+    font-weight: bold;
+    border-radius: 10px;
+    text-align: center;
+    background-color: white;
+    width: 50%;
+} 
+.micon{
+    border: none;
+    font-size: 1em;
+    width: 50%;
+    border-radius: 10px;
+    background-color: transparent;
+    background-color: rgb(58, 80, 90);
+}
+
+.container, .fullchat{
+    border: solid .3em black;
+}
+.icon{
+    width: 3.5em;
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+
+.icon:hover, .sub:hover{
+    color: black;
+    border-radius: 10px;
+    background-color: white;
+}
+.cel-sub{
+    font-size: 3em;
+    height: 100%;
+    width: 15%;
+    border: solid black;
+    border-radius: 10px;
+    background-color: transparent;
+    padding: 0;
+}
+.cel-sub:hover{
+    background-color: white;
+    
+}
+
+.view{
+    display: flex;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    font-weight: bold;
+    align-items: center;
+    justify-content: space-between;
+    background-color:rgb(58, 80, 90);
+    border-bottom: solid black;
+}
+
+.intitem{
+    background-color: rgb(72, 89, 97);
+    border: solid .1em black;
+}
+.response:hover{
+    background-color:white;
+}
+.response{
+    border: solid .1em black;
+    padding: .5em;
+    background-color: transparent;
+    width:90%;
+}
+.miniheader{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    font-weight: bold;
+    text-align: center;
+    justify-content: space-around;
+    background-color:rgb(28, 37, 41);
+}
+.response{
+
+    width: 90%;
+}
+.i1icon:hover{
+    font-weight: bold;
+    border-radius: 5px;
+    text-align: center;
+    background-color: white;
+    width: 50%;
+} 
+
+.i1icon{
+    border: none;
+    font-size: 1em;
+    width: 50%;
+    border-radius: 5px;
+    background-color: transparent;
+    background-color: rgb(58, 80, 90);
+}
+.dialogo{
+    background-color: rgb(136, 136, 136);
+    border-radius: 10px;
+    padding: 1em;
+    margin-bottom: 1em;
+}
+.respuesta{
+    padding: 1em;
+    margin-bottom: 1em;
+    margin-right: 0;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+}
+.titulo{
+    font-size: 3rem;
+}
+
+.search:hover{
+    background-color:white;
+    }    
+    .search{
+        border: solid .1em black;
+        padding: .5em;
+        background-color: transparent;
+        border-radius: 10px;
+    }
+.options{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color:rgb(63, 75, 80);
+}
+.fullchat{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1em;
+    justify-content: space-around;
+    background-color:rgb(12, 80, 74);
+}
+.pcNavbar{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    border-radius: 10px;
+    border: solid black;
+    background-color: black;
+    
+}
+
+.celNavbar{
+    display: flex;
+    bottom: 0;
+    width: 100%;
+    position: fixed;
+    align-items: center;
+    align-content: center;
+    justify-content: space-around;
+    background-color:rgb(58, 80, 90);
+    border-radius: 10px;
+    border: solid black;
+}
+.view ul{
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    margin-top: 0;
+    width: 100%;
+    margin-bottom: 0;
+    justify-content: space-between;
+    background-color:rgb(58, 80, 90);
+    top: 0;
+    border-radius: 10px;
+    margin-right: 1em;
+}
+.celNavbar ul{
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    margin-top: 0;
+    width: 100%;
+    margin-bottom: 0;
+    justify-content: space-around;
+    background-color:rgb(58, 80, 90);
+    top: 0;
+    border-radius: 10px;
+}
+
+.titulo{
+    font-size: 3rem;
+}
+
+.mensages{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: space-around;
+    background-color:rgb(28, 37, 41);
+}
+.i1icon:hover{
+    font-weight: bold;
+    border-radius: 5px;
+    text-align: center;
+    background-color: white;
+    width: 50%;
+} 
+.i1icon{
+    border: none;
+    font-size: 1em;
+    width: 50%;
+    background-color:rgb(58, 80, 90);
+}
+.icon3{
+    padding: 0;
+    width: 4.3em;
+    margin: 0;
+}
+.info12{
+    border-top: solid .1em black;
+    border-bottom:solid .1em black;
+    display: flex;
+    font-size: 1.5em;
+    border-radius: 10px;
+    text-align: center;
+    justify-content: space-around;
+    background-color: black ;
+}
+@media(min-width: 780px){
+    .celNavbar{
+        display: none;
+    }
+    .container{
+        display: flex;
+       justify-content:space-around;
+       margin-top: 0em;
+    }
+
+    .chatview{
+        width: 30%;
+        height: 37em;
+    }
+    .mensages{
+        height: 34.4em;
+    }
+    .fullchat{
+        width: 70%;
+        height: 37em;
+    }
+
+    .response{
+        background-color: rgb(72, 89, 97);
+        width: 90%;
+    }
+    .sub{
+        border: none;
+        font-weight: bold;
+        padding: 2em;
+        font-size: 1.1em;
+        background-color: transparent;
+    }
+    .pcNavbar ul{
+        list-style-type: none;
+        display: flex;
+        align-items: center;
+        align-content: center;
+        margin-top: 0;
+        margin-bottom: 0;
+        justify-content: space-between;
+        background-color:rgb(58, 80, 90);
+        top: 0;
+        border-radius: 10px;
+    }
+    .search:hover{
+    background-color:white;
+}
+.search{
+    border: solid .1em black;
+    padding: .5em;
+    background-color: transparent;
+    border-radius: 10px;
+}
+.miniheader{
+    background-color: rgb(12, 80, 74);
+    text-align: center;
+    width: 100%;
+    margin-right: 0;
+}
+
+    .view{
+        display: none;
+    }
+    .celheader{
+        display: none;
+    }
+    .container{
+        margin-top: 6em;
+    }
+
+    .intitem{
+        padding: .5em;
+    }
+}
+
+@media(max-width: 780px){
+.pcNavbar{
+    display: none;
+}
+.view{
+display: block;
+}
+.mensages{
+    margin-top: 2.5em;
+    height: 36em;
+}
+.miniheader{
+    display: none;
+}
+.fullchat{
+    display: none;
+}
+}

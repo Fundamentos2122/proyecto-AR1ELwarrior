@@ -1,0 +1,233 @@
+*{
+    box-sizing: border-box;
+    font-family: 'Century Gothic';
+}
+
+body{
+    background-color: rgb(28, 37, 41);
+}
+
+html,body{
+    margin: 0;
+}
+
+.container,.sub-container,.info2,.info3{
+    background-color: rgb(12, 80, 74);
+}
+.icon{
+    width: 3.5em;
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+.icon:hover, .sub:hover{
+    color: black;
+    border-radius: 10px;
+    background-color: white;
+}
+.cel-sub{
+    font-size: 3em;
+    height: 100%;
+    width: 15%;
+    border: solid black;
+    border-radius: 10px;
+    background-color: transparent;
+    padding: 0;
+}
+.cel-sub:hover{
+    background-color: white;
+    
+}
+
+.view{
+    display: flex;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    font-weight: bold;
+    align-items: center;
+    justify-content: space-between;
+    background-color:rgb(58, 80, 90);
+    border-bottom: solid black;
+}
+
+
+.info1{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color:rgb(28, 37, 41);
+    border: solid .1em black;
+    position: fixed;
+    top: 7.5em;
+    width: 100%;
+}
+.info12{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color:rgb(28, 37, 41);
+    border: solid .1em black;
+    position: fixed;
+    top: 6em;
+    width: 100%;
+}
+.info2{
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    justify-content: space-around;
+}
+
+.img1, .img2, .img3, .img4{
+    height: 50%;
+    width: 49%;
+}
+.info3{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: 71.6vh;
+    justify-content: center;
+    align-items: center;
+}
+.pcNavbar{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    border-radius: 10px;
+    border: solid black;
+    background-color: black;
+    
+}
+
+.celNavbar{
+    display: flex;
+    bottom: 0;
+    width: 100%;
+    position: fixed;
+    align-items: center;
+    align-content: center;
+    justify-content: space-around;
+    background-color:rgb(58, 80, 90);
+    border-radius: 10px;
+    border: solid black;
+}
+.view ul{
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    margin-top: 0;
+    width: 100%;
+    margin-bottom: 0;
+    justify-content: space-between;
+    background-color:rgb(58, 80, 90);
+    top: 0;
+    border-radius: 10px;
+    margin-right: 1em;
+}
+.celNavbar ul{
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    margin-top: 0;
+    width: 100%;
+    margin-bottom: 0;
+    justify-content: space-around;
+    background-color:rgb(58, 80, 90);
+    top: 0;
+    border-radius: 10px;
+}
+
+.titulo{
+    font-size: 3rem;
+}
+
+.i1icon:hover{
+    font-weight: bold;
+    border-radius: 5px;
+    text-align: center;
+    background-color: white;
+    width: 50%;
+} 
+
+.i1icon{
+    border: none;
+    font-size: 1em;
+    width: 50%;
+    border-radius: 5px;
+    background-color: transparent;
+    background-color: rgb(58, 80, 90);
+}
+.header{
+    display: flex;
+    justify-content: space-between;
+}
+.icon:hover{
+    background-color:white;
+}
+@media(min-width: 780px){
+    .icon{
+        width: 4.2em;
+    }
+
+    .celNavbar{
+        display: none;
+    }
+    .sub{
+        border: none;
+        font-weight: bold;
+        padding: 2em;
+        font-size: 1.1em;
+        background-color: transparent;
+    }
+    .pcNavbar ul{
+        list-style-type: none;
+        display: flex;
+        align-items: center;
+        align-content: center;
+        margin-top: 0;
+        margin-bottom: 0;
+        justify-content: space-between;
+        background-color:rgb(58, 80, 90);
+        top: 0;
+        border-radius: 10px;
+    }
+    .search:hover{
+    background-color:white;
+}
+.sub-container{
+    margin-top: 9em;
+} 
+.search{
+    border: solid .1em black;
+    padding: .5em;
+    background-color: transparent;
+    border-radius: 10px;
+}
+    .view{
+        display: none;
+    }
+
+    .info3{
+        height: 85vh;
+    }
+}
+
+@media(max-width: 780px){
+    .pcNavbar{
+        display: none;
+    }
+    .sub-container{
+        margin-top: 7em;
+    }    
+    .info12{
+        top: 4em;
+    }
+    .info1{
+        top: 5.5em;
+    }
+}

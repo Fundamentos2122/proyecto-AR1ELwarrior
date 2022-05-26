@@ -1,0 +1,255 @@
+*{
+    box-sizing: border-box;
+    font-family: 'Century Gothic';
+}
+body{
+    background-color: rgb(28, 37, 41);
+}
+html,body,img{
+    margin: 0;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+.icon{
+    width: 3.5em;
+}
+.icon:hover, .sub:hover, .profimg:hover{
+    color: white;
+    border-radius: 10px;
+    background-color: white;
+}
+.titulo{
+    font-size: 3rem;
+}
+.vieitem{
+    font-size: 1.5rem;
+}
+.cel-sub{
+    font-size: 3em;
+    height: 100%;
+    width: 15%;
+    border: solid black;
+    border-radius: 10px;
+    background-color: transparent;
+    padding: 0;
+}
+.cel-sub:hover{
+    background-color: white;
+    
+}
+.header{
+    display: block;
+}
+.view{
+    display: block;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    font-weight: bold;
+    align-items: center;
+    justify-content: space-between;
+    background-color:rgb(58, 80, 90);
+    border-bottom: solid black;
+}
+.i1icon:hover{
+    font-weight: bold;
+    border-radius: 10px;
+    text-align: center;
+    background-color: white;
+    width: 50%;
+} 
+.img{
+    text-align: center;
+    width: 90%;
+}
+.i1icon{
+    border: none;
+    font-size: 1em;
+    width: 50%;
+    border-radius: 10px;
+    background-color: transparent;
+    background-color: rgb(58, 80, 90);
+}
+.follow{
+    border: none;
+    font-size: 1em;
+    width: 50%;
+    background-color: transparent;
+}
+.follow:hover{
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    width: 50%;
+} 
+.info1{
+    border-top: solid .1em black;
+    border-bottom:solid .1em black;
+    display: flex;
+    font-size: 1.5em;
+    border-radius: 10px;
+    text-align: center;
+    justify-content: space-around;
+    background-color: black ;
+}
+.info2{
+    display: flex;
+    padding: 0;
+    margin: 0;
+    font-size: 2em;
+    align-items: center;
+    height: 100%;
+    align-content: center;
+    justify-content: space-around;
+    background-color:rgb(12, 80, 74);
+    border: solid black;
+    margin-top: 5em;
+}
+.profimg,.opt{
+    width: 4em;
+}
+.info3{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    background-color:transparent;
+}
+.comment:hover{
+    background-color:white;
+}
+.comment{
+    border: solid .1em black;
+    padding: .5em;
+    background-color: rgb(58, 80, 90);
+    width: 80%;
+}
+.interact{
+    width: 100%;
+        display: flex;
+        align-items: center;
+        width: 80%;
+        border: solid black ;
+        border-radius: 10px;
+        justify-content: space-around;
+        background-color: rgb(12, 80, 74);
+}
+.headercontent{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    border-radius: 10px;
+    border: solid black;
+    background-color: black;
+    
+}
+
+.profimg{
+    width: 2em;
+}
+.sub-container{
+    margin-top: 8.2em;
+}
+.celNavbar{
+    display: flex;
+    bottom: 0;
+    width: 100%;
+    position: fixed;
+    align-items: center;
+    align-content: center;
+    justify-content: space-around;
+    background-color:rgb(58, 80, 90);
+    border-radius: 10px;
+    border: solid black;
+}
+.view ul{
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    margin-top: 0;
+    width: 100%;
+    margin-bottom: 0;
+    justify-content: space-between;
+    background-color:rgb(58, 80, 90);
+    top: 0;
+    border-radius: 10px;
+    margin-right: 1em;
+}
+.celNavbar ul{
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    margin-top: 0;
+    width: 100%;
+    margin-bottom: 0;
+    justify-content: space-around;
+    background-color:rgb(58, 80, 90);
+    top: 0;
+    border-radius: 10px;
+}
+@media(min-width: 780px){
+    .icon{
+        width: 4.2em;
+    }
+    .celNavbar{
+        display: none;
+    }
+    .sub{
+        border: none;
+        font-weight: bold;
+        padding: 2em;
+        font-size: 1.1em;
+        background-color: transparent;
+    }
+    .pcNavbar ul{
+        list-style-type: none;
+        display: flex;
+        align-items: center;
+        align-content: center;
+        margin-top: 0;
+        margin-bottom: 0;
+        justify-content: space-between;
+        background-color:rgb(58, 80, 90);
+        top: 0;
+        border-radius: 10px;
+    }
+    .search:hover{
+    background-color:white;
+}
+.search{
+    border: solid .1em black;
+    padding: .5em;
+    background-color: transparent;
+    border-radius: 10px;
+}
+    .view{
+        display: none;
+    }
+}
+
+
+@media(max-width: 780px){
+.headercontent{
+    display: none;
+}
+.info2{
+    margin-top: 4em; 
+}
+.sub-container{
+    margin-top: 4.5em;
+    margin-bottom: 4.5em;
+}
+.interact{
+    width: 80%;
+}
+.img{
+    width: 90%;
+}
+}
+
+
+
