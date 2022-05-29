@@ -1,14 +1,14 @@
-<div class="modal" id="modalPostEdit">
+<div class="modal" id="modalDeleteArt">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h2>Editar publicacion</h2>
+                <h2>Eliminar Publicacion</h2>
             </div>
             <div class="modal-body">
-                <form action="../controllers/postControler.php" method="POST">
+                <form action="../controllers/postController.php" method="POST">
                     <input type="hidden" name="_method" value="DELETE">
                     <input type="hidden" name="id" value="" id="form-delete-id">
-                    <p>BORRAR ESTA PUBLICACION?</p>
+                    <p>¿Seguro que desea elminiar este registro?</p>
                     <input type="submit" value="Aceptar">
                 </form>
             </div>

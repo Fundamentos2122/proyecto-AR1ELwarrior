@@ -42,7 +42,7 @@
     <div class="container">
         <div class="personal">
             <div class="data1">
-                <div><img class="imgprofile" src="../imgs/pimg.PNG" alt=""></div>
+                <div><img class="imgprofile" src="../imgs/pimg.jpg" alt=""></div>
             <div>RAMDOM95</div>
             <div>Account: Normal</div>
             </div>
@@ -60,12 +60,11 @@
         <div class="opciones">
             <button class="i1icon" onclick="location.href='../views/perfil.php'"> GALLERY </button>
                 <button class="i1icon" onclick="location.href='../views/perfil2.php'"> FAVOURITES </button>
-                <button class="i1icon" onclick="location.href='../views/perfil3.php'"> POSTS </button>
                 <button class="i1icon" onclick="location.href='../views/perfil4.php'"> SUSCRIPTION </button>
         </div>
 
         <div class="gallery">
-            <div><img  class="imgg" src="../imgs/gal.png" alt=""></div>
+            <div><img  class="imgg" src="../imgs/gal.jpg" alt=""></div>
         </div>
 
     </div>

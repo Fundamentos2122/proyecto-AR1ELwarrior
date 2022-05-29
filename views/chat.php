@@ -52,9 +52,9 @@
             </div>
             <div class="mensages">
 
-                    <div class="intitem"> <img class="icon" src="../imgs/pimg.PNG" alt=""> Mensaje de Alan54: Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eum fuga corrupti nemo facere minus ab! Enim, numquam? Dolor aut ipsum maiores illo neque impedit veniam. Dicta hic minus ipsam commodi.</div>
+                    <div class="intitem"> <img class="icon" src="../imgs/pimg.jpg" alt=""> Mensaje de Alan54: Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eum fuga corrupti nemo facere minus ab! Enim, numquam? Dolor aut ipsum maiores illo neque impedit veniam. Dicta hic minus ipsam commodi.</div>
                     <div class="intitem"> <img class="icon" src="../imgs/wy.jpg" alt=""> Mensaje de MRdrawer: Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo cum, voluptate quos voluptatem quas aut nam aperiam dolore mollitia illum adipisci perspiciatis sapiente. Adipisci commodi veniam quo placeat reprehenderit tenetur.</div>
-                    <div class="intitem"> <img class="icon" src="../imgs/pimg.PNG" alt=""> Mensaje de Epicgirl9: Lorem ipsum dolor sit amet consectetur, adipisicing elit. Exercitationem aperiam asperiores nobis quaerat doloremque? Cum magnam dolore velit assumenda quo impedit sit dolor. Ex recusandae esse consequatur impedit, pariatur laborum?</div>                 
+                    <div class="intitem"> <img class="icon" src="../imgs/pimg.jpg" alt=""> Mensaje de Epicgirl9: Lorem ipsum dolor sit amet consectetur, adipisicing elit. Exercitationem aperiam asperiores nobis quaerat doloremque? Cum magnam dolore velit assumenda quo impedit sit dolor. Ex recusandae esse consequatur impedit, pariatur laborum?</div>                 
                 </div>
         </div>
 

@@ -9,7 +9,7 @@ class User {
 
     public function __construct($id, $nombre, $email, $password, $type) {
         $this->setId($id);
-        $this->setUsername($nombre);
+        $this->setNombre($nombre);
         $this->setEmail($email);
         $this->setPassword($password);
         $this->setType($type);
@@ -23,11 +23,11 @@ class User {
         $this->_id = $id;
     }
 
-    public function getUsername() {
+    public function getNombre() {
         return $this->_nombre;
     }
 
-    public function setUsername($nombre) {
+    public function setNombre($nombre) {
         $this->_nombre = $nombre;
     }
 
@@ -59,7 +59,8 @@ class User {
         $array = array();
 
         $array["id"] = $this->getId();
-        $array["nombre"] = $this->getUsername();
+        $array["nombre"] = $this->getNombre();
+        $array["email"] = $this->getEmail();
         $array["password"] = $this->getPassword();
         $array["type"] = $this->getType();
 

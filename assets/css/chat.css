@@ -256,12 +256,12 @@ a{
     .container{
         display: flex;
        justify-content:space-around;
-       margin-top: 0em;
     }
 
     .chatview{
+        margin-top: 3em;
         width: 30%;
-        height: 37em;
+        height: 35em;
     }
     .mensages{
         height: 34.4em;

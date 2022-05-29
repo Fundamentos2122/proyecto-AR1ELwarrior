@@ -13,8 +13,9 @@
         <span class="title">LOGIN</span>
     </div>
     <div class="container">
-            <form>
-                <div class="form-group">
+            <form action="./controllers/accessController.php" method="POST" autocomplete="off" class="flow">
+            <input type="hidden" name="_method" value="POST">
+            <div class="form-group">
                     <label for=" username" class="form-label">USERNAME</label>
                 <input type="text" class="form-control" name="username" placeholder="Username" autocomplete="off" required>
                 </div>

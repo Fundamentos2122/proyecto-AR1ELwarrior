@@ -1,18 +1,18 @@
-const formTweet = document.getElementById("form-tweet");
-const tweetList = document.getElementById("tweet-list");
-const modalTweet = document.getElementById("modalTweet");
-const modalDeleteTweet = document.getElementById("modalDeleteTweet");
+const formArt = document.getElementById("form-artt");
+const artList = document.getElementById("art-list");
+const modalArt = document.getElementById("modalArt");
+const modalDeleteArt = document.getElementById("modalDeleteArt");
 const idEdit = document.getElementById("form-edit-id");
 const idDelete = document.getElementById("form-delete-id");
 const textAreaEdit = document.getElementById("form-edit-text");
 const btnSaveEdit = document.getElementById("btnSaveEdit");
-const keyList = "tweetList";
+const keyList = "artList";
 
 document.addEventListener("DOMContentLoaded", function() {
     //Agregar evento al formulario
     // formTweet.addEventListener("submit", submitTweet);
 
-    getTweets();
+    getArts();
 
     let modals = document.getElementsByClassName("modal");
 
@@ -27,61 +27,61 @@ document.addEventListener("DOMContentLoaded", function() {
     // btnSaveEdit.addEventListener("click", saveEdit);
 });
 
-function submitTweet(e) {
+function submitArts(e) {
     e.preventDefault();
     e.stopPropagation();
 
-    let tweet = {
+    let art = {
         id: Date.now(),
-        text: formTweet["tweet"].value
+        text: formArt["art"].value
     };
 
-    let list = getTweets();
+    let list = getArts();
 
-    list.push(tweet);
+    list.push(art);
 
     localStorage.setItem(keyList, JSON.stringify(list));
 
-    paintTweets();
+    paintArts();
 }
 
-function paintTweets(list) {
+function paintArts(list) {
     let html = '';
 
     for(var i = 0; i < list.length; i++) {
-        html += 
-            `<div class="card" id="${list[i].id}">
-                <div class="card-img">
-                    <img src="https:\\picsum.photos/600" alt="" class="img-fluid">
-                </div>
-                <div class="card-text">
-                    ${list[i].text}
-                </div>
-                <div class="options">
-                    <button class="btn-option" onclick="editTweet(${list[i].id})">
-                        <i class="fa-solid fa-pen-to-square"></i>
-                    </button>
-                    <button class=\"btn-option\" onclick=\"deleteTweet(${list[i].id})\">
-                        <i class=\"fa-solid fa-xmark\"></i>
-                    </button>
-                </div>
-            </div>`;
+        html += `<div class="info2" id="${list[i].id}">
+        <div><img class="profimg" src="../imgs/wy.jpg" alt=""></div>
+        <div>  ${list[i].creador}</div>
+        <button class="follow">+FOLLOW</button>
+        <div class="btn-option" onclick="editArt(${list[i].id})"><img class="profimg" src="../imgs/edit.png" alt=""></div>
+        <div class=\"btn-option\" onclick=\"deleteArt(${list[i].id})"><img class="profimg" src="../imgs/cerrar.png" alt=""></div>
+    </div>
+    <div class="info3">
+        <div  class="img" ><img class="img" src=" ${list[i].imagen}" alt=""></div>
+        <div class="interact">
+            <div class="intitem"> <img class="icon" src="../imgs/like.png" alt=""></div>
+            <div class="intitem"> <img class="icon" src="../imgs/comment.png" alt=""></div>
+            <div class="intitem"  onclick="location.href='../views/share.php'"> <img class="icon" src="../imgs/share.png" alt="" ></div>  
+        </div>
+        <input class="comment" type="text" placeholder=" ${list[i].comentario}"> </input>
+
+    </div>`;
     }
 
-    tweetList.innerHTML = html;
+    artList.innerHTML = html;
 }
 
-function getTweets() {
+function getArts() {
     let xhttp = new XMLHttpRequest();
 
-    xhttp.open("GET", "../controllers/tweetsController.php", true);
+    xhttp.open("GET", "../controllers/postController.php", true);
 
     xhttp.onreadystatechange = function() {
         if (this.readyState === 4) {
             if (this.status === 200) {
                 let list = JSON.parse(this.responseText);
 
-                paintTweets(list);
+                paintArts(list);
             }
             else {
                 console.log("Error");
@@ -94,27 +94,27 @@ function getTweets() {
     return [];
 }
 
-function deleteTweet(id) {
+function deleteArts(id) {
     idDelete.value = id;
 
-    modalDeleteTweet.classList.add("show");
+    modalDeleteArts.classList.add("show");
 }
 
-function editTweet(id) {
+function editArts(id) {
     let xhttp = new XMLHttpRequest();
 
-    xhttp.open("GET", "../controllers/tweetsController.php?id=" + id, true);
+    xhttp.open("GET", "../controllers/postController.php?id=" + id, true);
 
     xhttp.onreadystatechange = function() {
         if (this.readyState === 4) {
             if (this.status === 200) {
-                let tweet = JSON.parse(this.responseText);
+                let art = JSON.parse(this.responseText);
 
-                idEdit.value = tweet.id;
-                textAreaEdit.value = tweet.text;
+                idEdit.value = art.id;
+                textAreaEdit.value = art.text;
 
-                btnSaveEdit.setAttribute("onclick", "saveEdit(" + tweet.id + ")");
-                modalTweet.classList.add("show");
+                btnSaveEdit.setAttribute("onclick", "saveEdit(" + art.id + ")");
+                modalArt.classList.add("show");
             }
             else {
                 console.log("Error");
@@ -128,7 +128,7 @@ function editTweet(id) {
 function saveEdit(id) {
     let xhttp = new XMLHttpRequest();
 
-    xhttp.open("POST", "../controllers/tweetsController.php", true);
+    xhttp.open("POST", "../controllers/postController.php", true);
 
     xhttp.setRequestHeader("Content-type", "application/json");
 
@@ -136,8 +136,8 @@ function saveEdit(id) {
         if (this.readyState === 4) {
             if (this.status === 200) {
                 if (this.responseText === "Registro guardado") {
-                    getTweets();
-                    modalTweet.classList.remove("show");
+                    getaRTS();
+                    modalArt.classList.remove("show");
                 }
             }
             else {

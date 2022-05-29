@@ -24,8 +24,7 @@
             <button class="i1icon" onclick="location.href='../index.html'"> LOG OUT </button>
         </div>
         <div class="info1">
-            <button class="i1icon"> Publications </button>
-            <button class="i1icon" onclick="location.href='../views/home2.php'"> Posts </button>
+            <button class="i1icon2"> Publications </button>
         </div>
     </div>
 
@@ -38,8 +37,7 @@
                 <li> <a href="../views/chat.php"><img class="icon" src="../imgs/chat.png" alt=""></a></li>
             </ul>
             <div class="info1">
-            <button class="i1icon"onclick="location.href='../views/home.php'"> Publications </button>
-            <button class="i1icon" onclick="location.href='../views/home2.php'"> Posts </button>
+            <button class="i1icon2"onclick="location.href='../views/home.php'"> Publications </button>
         </div>
             </div>
             <div class="info1">
@@ -96,5 +94,10 @@
             <li> <a href="../views/perfil.php"><img class="icon" src="../imgs/user.png" alt=""></a></li>
         </ul>
     </div>
+    <?php 
+        include("modalPostEdit.php");
+        include("modalDelete.php"); 
+        include("../assets/js/script_submit.js");
+    ?>
 </body>
 </html>

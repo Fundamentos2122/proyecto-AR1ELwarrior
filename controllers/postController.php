@@ -18,17 +18,17 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
         try {
             $id = $_GET["id"];
 
-            $query = $connection->prepare('SELECT * FROM draws WHERE id = :id');
+            $query = $connection->prepare('SELECT * FROM arts WHERE id = :id');
             $query->bindParam(':id', $id, PDO::PARAM_INT);
             $query->execute();
     
-            $art;
+            $tweet;
     
             while($row = $query->fetch(PDO::FETCH_ASSOC)) {
-                $tweet = new Art($row['id'], $row['creador'], $row['imagen'], $row['comentario']);
+                $tweet = new Art($row['id'], $row['creador'], $row['imagen'],$row['comentario'], $row['timestamp'], $row['active']);
             }
     
-            echo json_encode($art->getArray());
+            echo json_encode($tweet->getArray());
         }
         catch(PDOException $e) {
             echo $e;
@@ -41,14 +41,24 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
         $user_id = $_SESSION["id"];
 
         try {
-            $query = $connection->prepare('SELECT * FROM draws WHERE active = 1 AND user_id = :user_id');
-            $query->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+            $query_string = 'SELECT * FROM arts WHERE active = 1';
+
+            if($_SESSION["type"] !== "admin") {
+                $query_string = $query_string . ' AND user_id = :user_id';
+            }
+
+            $query = $connection->prepare($query_string);
+
+            if($_SESSION["type"] !== "admin") {
+                $query->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+            }
+
             $query->execute();
     
-            $arts = array();
+            $art = array();
     
             while($row = $query->fetch(PDO::FETCH_ASSOC)) {
-                $art = new Art($row['id'], $row['creador'], $row['imagen'], $row['comentario']);
+                $art = new Art($row['id'], $row['creador'], $row['imagen'],$row['comentario'], $row['timestamp'], $row['active']);
     
                 $arts[] = $art->getArray();
             }
@@ -61,14 +71,14 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
     }
 }
 else if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    if (array_key_exists("creador", $_POST)) {
+    if (array_key_exists("comentario", $_POST)) {
         //Utilizar el arreglo $_POST
         if ($_POST["_method"] === "POST") {
             //Registro nuevo
-            postArt($_POST["creador"], true);
+            postArt($_POST["comentario"], true);
         }
         else if ($_POST["_method"] === "PUT") {
-            putArt($_POST["id"], $_POST["creador"], true);
+            putArt($_POST["id"], $_POST["comentario"], true);
         }
     }
     else if (array_key_exists("id", $_POST)) {
@@ -91,7 +101,7 @@ else if ($_SERVER["REQUEST_METHOD"] === "POST") {
     exit();
 }
 
-function postArt($imagen, $redirect) {
+function postArt($text, $redirect) {
     global $connection;
 
     $timestamp = date("Y-m-d H:i:s", $_SERVER['REQUEST_TIME']);
@@ -101,8 +111,10 @@ function postArt($imagen, $redirect) {
     $user_id = $_SESSION["id"];
 
     try {
-        $query = $connection->prepare('INSERT INTO arts VALUES(NULL, :imagen, :timestamp, 1, :user_id)');
-        $query->bindParam(':imagen', $imagen, PDO::PARAM_STR);
+        $query = $connection->prepare('INSERT INTO arts VALUES(NULL, :text, :text, :text :timestamp, 1, :user_id)');
+        $query->bindParam(':text', $text, PDO::PARAM_STR);
+        $query->bindParam(':text', $creador, PDO::PARAM_STR);
+        $query->bindParam(':text', $comentario, PDO::PARAM_STR);
         $query->bindParam(':timestamp', $timestamp, PDO::PARAM_STR);
         $query->bindParam(':user_id', $user_id, PDO::PARAM_INT);
         $query->execute();
@@ -124,12 +136,13 @@ function postArt($imagen, $redirect) {
     }
 }
 
-function putArt($id, $imagen, $redirect) {
+function putArt($id, $text, $redirect) {
     global $connection;
 
     try {
-        $query = $connection->prepare('UPDATE imagen SET text = :imagen WHERE id = :id');
-        $query->bindParam(':imagen', $imagen, PDO::PARAM_STR);
+        $query = $connection->prepare('UPDATE art SET text = :text WHERE id = :id');
+        $query->bindParam(':text', $text, PDO::PARAM_STR);
+        $query->bindParam(':text', $imagen, PDO::PARAM_STR);
         $query->bindParam(':id', $id, PDO::PARAM_INT);
         $query->execute();
 

@@ -69,6 +69,14 @@ a{
     text-align: center;
     width: 90%;
 }
+.i1icon2{
+    border: none;
+    font-size: 1em;
+    width: 100%;
+    border-radius: 10px;
+    background-color: transparent;
+    background-color: rgb(58, 80, 90);
+}
 .i1icon:hover{
     font-weight: bold;
     border-radius: 10px;

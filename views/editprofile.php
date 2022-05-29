@@ -11,9 +11,9 @@
     <div class="pcNavbar">
         <ul>
            
-            <li> <a href="../views/home.php"><img class="icon" src="../imgs/creative-icon.png" alt=""> CreativeFolio</a></li>
-            <li> <a href="../views/search.php"><img class="icon" src="../imgs/search.png" alt=""></a><input type="search" class="search" placeholder="Search..."> </li>
-            <li> <a href="../views/perfil.php"><img class="icon" src="../imgs/user.png" alt=""></a></li>
+            <li> <a href="../views/home.php"><img class="icon" src="../imgs/creative-icon.jpg" alt=""> CreativeFolio</a></li>
+            <li> <a href="../views/search.php"><img class="icon" src="../imgs/search.jpg" alt=""></a><input type="search" class="search" placeholder="Search..."> </li>
+            <li> <a href="../views/perfil.php"><img class="icon" src="../imgs/user.jpg" alt=""></a></li>
             <button class="sub" onclick="location.href='../views/submit.php'">SUBMIT</button>
         </ul>
         <div class="info12">
@@ -27,7 +27,7 @@
             <ul>
                 
                 <div class="titulo">EDIT PROFILE</div>
-                <li> <a href="../views/chat.php"><img class="icon" src="../imgs/chat.png" alt=""></a></li>
+                <li> <a href="../views/chat.php"><img class="icon" src="../imgs/chat.jpg" alt=""></a></li>
             </ul>
         </div>
         <div class="info12">
@@ -72,11 +72,7 @@
                     <input type="text" class="form-control" name="username" placeholder="Username" autocomplete="off" required>
                     </div>
                     <div class="form-group">
-                        <label for=" date" class="form-label">DATE OF BIRTH</label>
-                    <input type="date" class="form-control" name="date"  autocomplete="off" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="mail" class="form-label">EMAIL</label>
+                        <label for="mail" class="form-label">EMAIL <br></label>
                     <input type="email" class="form-control" name="mail" placeholder="Password" required>
                     </div>
                     <div class="notif">

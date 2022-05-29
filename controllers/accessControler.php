@@ -26,6 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             if ($query->rowCount() === 0) {
                 echo "Usuario no encontrado";
+                // header('Location: http://localhost/proyectoavance3/');
                 exit();
             }
 
@@ -47,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $_SESSION["email"] = $user->getEmail();
             $_SESSION["type"] = $user->getType();
 
-            header('Location: http://localhost/proectoavance3/views/home.php');
+            header('Location: http://localhost/proyectoavance3/views/');
             exit();
         }
         catch(PDOException $e) {
@@ -59,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         session_destroy();
 
-        header('Location: http://localhost/proectoavance3/');
+        header('Location: http://localhost/proyectoavance3/');
 
         exit();
     }
