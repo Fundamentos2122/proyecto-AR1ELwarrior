@@ -115,6 +115,31 @@ a{
     border: solid black;
     margin-top: 5em;
 }
+.info4{
+    display: flex;
+    padding: 0;
+    margin: 0;
+    font-size: 2em;
+    align-items: center;
+    height: 100%;
+    align-content: center;
+    justify-content: space-around;
+    background-color:rgb(12, 80, 74);
+    border: solid black;
+}
+.info5{
+    display: flex;
+    padding: 0;
+    margin: 0;
+    font-size: 2em;
+    align-items: center;
+    height: 100%;
+    width: 80%;
+    align-content: center;
+    justify-content: space-around;
+    background-color:rgb(12, 80, 74);
+    border: solid black;
+}
 .profimg,.opt{
     width: 4em;
 }

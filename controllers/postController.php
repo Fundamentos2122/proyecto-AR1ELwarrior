@@ -18,17 +18,18 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
         try {
             $id = $_GET["id"];
 
-            $query = $connection->prepare('SELECT * FROM arts WHERE id = :id');
+            $query = $connection->prepare('SELECT * FROM publications WHERE id = :id');
             $query->bindParam(':id', $id, PDO::PARAM_INT);
             $query->execute();
     
-            $tweet;
-    
+            $art;
+
             while($row = $query->fetch(PDO::FETCH_ASSOC)) {
-                $tweet = new Art($row['id'], $row['creador'], $row['imagen'],$row['comentario'], $row['timestamp'], $row['active']);
+                $art = new Art($row['id'], $row['idUser'], $row['nombre'],$row['descripcion'],
+                 $row['imagen'], $row['genero'], $row['timestamp']);
             }
     
-            echo json_encode($tweet->getArray());
+            echo json_encode($art->getArray());
         }
         catch(PDOException $e) {
             echo $e;
@@ -36,29 +37,34 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
     }
     else {
         //Obtener TODOS los registros
-        session_start();
-
-        $user_id = $_SESSION["id"];
+        //session_start();
+            //$usuario = $_SESSION["nombre"];
+          session_start();
+          $user_id = $_SESSION["id"];
 
         try {
-            $query_string = 'SELECT * FROM arts WHERE active = 1';
-
-            if($_SESSION["type"] !== "admin") {
-                $query_string = $query_string . ' AND user_id = :user_id';
-            }
-
-            $query = $connection->prepare($query_string);
-
-            if($_SESSION["type"] !== "admin") {
-                $query->bindParam(':user_id', $user_id, PDO::PARAM_INT);
-            }
-
+            //$query_string = 'SELECT * FROM publications';
+            $query = $connection->prepare('SELECT * FROM publications');
             $query->execute();
-    
             $art = array();
+
+            // if($_SESSION["type"] !== "admin") {
+            //     $query_string = $query_string . ' AND user_id = :user_id';
+            // }
+
+            // $query = $connection->prepare($query_string);
+
+            // if($_SESSION["type"] !== "admin") {
+            //     $query->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+            // }
+
+            // $query->execute();
+    
+            // $art = array();
     
             while($row = $query->fetch(PDO::FETCH_ASSOC)) {
-                $art = new Art($row['id'], $row['creador'], $row['imagen'],$row['comentario'], $row['timestamp'], $row['active']);
+                $art = new Art($row['id'], $row['idUser'], $row['nombre'],$row['descripcion'],
+                 $row['imagen'], $row['genero'], $row['timestamp']);
     
                 $arts[] = $art->getArray();
             }
@@ -70,104 +76,106 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
         }
     }
 }
-else if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    if (array_key_exists("comentario", $_POST)) {
+else if($_SERVER["REQUEST_METHOD"] === "POST"){
+    if(array_key_exists("descripcion",$_POST)){
         //Utilizar el arreglo $_POST
-        if ($_POST["_method"] === "POST") {
+        $photo = "";
+        if (sizeof($_FILES) > 0) {
+            $tmp_name = $_FILES["imagen"]["tmp_name"];
+    
+            $photo = file_get_contents($tmp_name);
+
+        }
+        if($_POST["_method"] === "POST"){
             //Registro nuevo
-            postArt($_POST["comentario"], true);
+            session_start();
+            $iduser = $_SESSION["id"];
+            $nombre = $_SESSION["nombre"];
+            postArt($iduser,$nombre,$_POST["descripcion"],$photo,$_POST["genero"],true);//future
         }
-        else if ($_POST["_method"] === "PUT") {
-            putArt($_POST["id"], $_POST["comentario"], true);
-        }
-    }
-    else if (array_key_exists("id", $_POST)) {
-        if ($_POST["_method"] === "DELETE") {
-            deleteArt($_POST["id"], true);
+        else if($_POST["_method"] === "PUT"){
+            putArt($_POST["nombre"],$_POST["descripcion"],$_POST["imagen"],$_POST["genero"],$_POST["timestamp"],true);//future
         }
     }
-    else {
-        //Utilizar file_get_contents
-        $data = json_decode(file_get_contents("php://input"));
-
-        if ($data->_method === "POST") {
-            postArt($data->text, false);
-        }
-        else if($data->_method === "PUT") {
-            putArt($data->id, $data->text, false);
+    else if(array_key_exists("id",$_POST)){
+        if($_POST["_method"] === "DELETE"){//AGREGO ESTO Y LA FUNCION, SOLO POR FORMULARIO
+            deleteArt($_POST["id"],true);
         }
     }
-
-    exit();
+   exit();
 }
 
-function postArt($text, $redirect) {
+function postArt($iduser,$nombre,$descripcion,$imagen,$genero,$redirect){
     global $connection;
 
-    $timestamp = date("Y-m-d H:i:s", $_SERVER['REQUEST_TIME']);
+     $timestamp = date("Y-m-d H:i:s", $_SERVER['REQUEST_TIME']);
 
-    session_start();
 
-    $user_id = $_SESSION["id"];
-
-    try {
-        $query = $connection->prepare('INSERT INTO arts VALUES(NULL, :text, :text, :text :timestamp, 1, :user_id)');
-        $query->bindParam(':text', $text, PDO::PARAM_STR);
-        $query->bindParam(':text', $creador, PDO::PARAM_STR);
-        $query->bindParam(':text', $comentario, PDO::PARAM_STR);
+    try{
+        $query = $connection->prepare('INSERT INTO publications VALUES(NULL,:id, :nombre,:descripcion, :imagen, :genero, :timestamp)');
+        $query->bindParam(':id', $iduser, PDO::PARAM_INT);
+        $query->bindParam(':nombre', $nombre, PDO::PARAM_STR);
+        $query->bindParam(':descripcion', $descripcion, PDO::PARAM_STR);
+        $query->bindParam(':imagen', $imagen, PDO::PARAM_STR);
+        $query->bindParam(':genero', $genero, PDO::PARAM_STR);
         $query->bindParam(':timestamp', $timestamp, PDO::PARAM_STR);
-        $query->bindParam(':user_id', $user_id, PDO::PARAM_INT);
         $query->execute();
 
-        if($query->rowCount() === 0) {
-            echo "Error en la inserción";
+        if($query->rowCount() === 0){
+            echo("404: Error en la inserción");
         }
-        else {
-            if ($redirect) {
-                header('Location: http://localhost/proyectoavance3/views/');
+        else{
+            // echo "Registro guardado";
+            if($redirect){
+                header('Location: http://localhost/proyectoavance3/views/home.php');//Aqui se le cambia la ruta a la página de productos actual
             }
-            else {
+            else{
                 echo "Registro guardado";
             }
         }
+
     }
-    catch(PDOException $e) {
+    catch(PDOException $e){
         echo $e;
     }
+
 }
 
-function putArt($id, $text, $redirect) {
+function putArt($id,$nombre,$descripcion,$imagen,$genero,$redirect){
     global $connection;
-
-    try {
-        $query = $connection->prepare('UPDATE art SET text = :text WHERE id = :id');
-        $query->bindParam(':text', $text, PDO::PARAM_STR);
-        $query->bindParam(':text', $imagen, PDO::PARAM_STR);
+    try{
+        $query = $connection->prepare('UPDATE publications SET nombre = :nombre,descripcion = :descripcion, imagen = :imagen, genero = :genero WHERE id = :id');//Para actualizar es con una coma
         $query->bindParam(':id', $id, PDO::PARAM_INT);
+        $query->bindParam(':nombre', $nombre, PDO::PARAM_STR);
+        $query->bindParam(':descripcion', $descripcion, PDO::PARAM_STR);
+        $query->bindParam(':imagen', $imagen, PDO::PARAM_STR);
+        $query->bindParam(':genero', $genero, PDO::PARAM_STR);
         $query->execute();
 
-        if($query->rowCount() === 0) {
-            echo "Error en la actualización";
+        if($query->rowCount() === 0){
+            echo("404: Error en la actualización");
         }
-        else {
-            if ($redirect) {
-                header('Location: http://localhost/proyectoavance3/views/');
+        else{
+            // echo "Registro guardado";
+            if($redirect){
+                header('Location: http://localhost/proyectoavance3/views/submit.php');
             }
-            else {
+            else{
                 echo "Registro guardado";
             }
         }
-    }
-    catch(PDOException $e) {
-        echo $e;
-    }
-}
 
+    }
+    catch(PDOException $e){
+        echo $e;
+   }
+
+}
 function deleteArt($id, $redirect) {
     global $connection;
 
     try {
-        $query = $connection->prepare('UPDATE arts SET active = 0 WHERE id = :id');
+        $query = $connection->prepare('UPDATE publications WHERE id = :id');
         $query->bindParam(':id', $id, PDO::PARAM_INT);
         $query->execute();
 
@@ -176,7 +184,7 @@ function deleteArt($id, $redirect) {
         }
         else {
             if ($redirect) {
-                header('Location: http://localhost/proyectoavance3/views/');
+                header('Location: http://localhost/proyectoavance3/views/submit.php');
             }
             else {
                 echo "Registro eliminado";

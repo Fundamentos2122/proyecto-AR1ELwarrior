@@ -8,7 +8,14 @@
     <title>Home</title>
 </head>
 <body>
+<?php  
+    session_start();
+    if(!array_key_exists("nombre",$_SESSION)){
+        header('Location: http://localhost/proyectoavance3/views/login.php');
+        exit();
+    } 
 
+?>
     <div class="headercontent">
         <div class="pcNavbar">
             <ul>
@@ -42,11 +49,18 @@
             </div>
             <div class="info1">
             <button class="i1icon" onclick="location.href='../views/about.php'"> AYUDA </button>
-            <button class="i1icon" onclick="location.href='../index.html'"> LOG OUT </button>
+            <form action="../controllers/accessControler.php" method="POST" class="logout-icon">
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="submit" class="i1icon" value="LOG OUT">
+        </form>
         </div>
         </div>
-
         <div class="sub-container">
+        <div id="artList">
+
+        </div>
+        </div>
+        <!-- <div class="sub-container">
             <div class="info2">
                 <div><img class="profimg" src="../imgs/wy.jpg" alt=""></div>
                 <div> WIZYAKUZA</div>
@@ -66,12 +80,16 @@
             </div>
         </div>
         <div class="sub-container">
+            
             <div class="info2">
                 <div><img class="profimg" src="../imgs/wy2.jpg" alt=""></div>
                 <div> ElinTan</div>
                 <button class="follow">FOLLOWING</button>
                 <div><img class="profimg" src="../imgs/edit.png" alt=""></div>
                 <div><img class="profimg" src="../imgs/cerrar.png" alt=""></div>
+            </div>
+            <div class="info4">
+                <div class="mensaje"> ESTE ES UN COMENTARIO</div>
             </div>
             <div class="info3">
                 <div  class="img" ><img class="img" src="../imgs/post2.jpg" alt=""></div>
@@ -80,10 +98,13 @@
                     <div class="intitem"> <img class="icon" src="../imgs/comment.png" alt=""></div>
                     <div class="intitem"  onclick="location.href='../views/share.php'"> <img class="icon" src="../imgs/share.png" alt="" ></div>  
                 </div>
+                <div class="info5">
+                <div class="comentario"> wow esta increible</div>
+            </div>
                 <input class="comment" type="text" placeholder="Add a comment"> </input>
 
             </div>
-        </div>
+        </div> -->
     </div>
     <div class="celNavbar">
         <ul>
@@ -95,9 +116,8 @@
         </ul>
     </div>
     <?php 
-        include("modalPostEdit.php");
-        include("modalDelete.php"); 
-        include("../assets/js/script_submit.js");
-    ?>
+        include("../assets/js/script_submit.php");
+     ?>
+    <!-- <script src="../assets/js/script_submit.php"></script> -->
 </body>
 </html>

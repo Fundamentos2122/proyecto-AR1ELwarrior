@@ -19,7 +19,10 @@
         <div class="info12">
             <button class="i1icon" onclick="location.href='../views/chat.php'"> CHAT </button>
             <button class="i1icon" onclick="location.href='../views/about.php'"> AYUDA </button>
-            <button class="i1icon" onclick="location.href='../index.html'"> LOG OUT </button>          
+            <form action="../controllers/accessControler.php" method="POST" class="logout-icon">
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="submit" class="i1icon" value="LOG OUT">
+        </form>         
             </div> 
     </div> 
     <div class="view">
@@ -42,8 +45,8 @@
         <div class="personal">
             <div class="data1">
                 <div><img class="imgprofile" src="../imgs/pimg.jpg" alt=""></div>
-            <div>RAMDOM95</div>
-            <div>Account: Normal</div>
+            <div>ELARIEL</div>
+            <div>Account: admin</div>
             </div>
 
             <div class="data2">

@@ -7,7 +7,7 @@ class User {
     private $_password;
     private $_type;
 
-    public function __construct($id, $nombre, $email, $password, $type) {
+    public function __construct($id,$nombre,$email, $password, $type) {
         $this->setId($id);
         $this->setNombre($nombre);
         $this->setEmail($email);
@@ -44,7 +44,7 @@ class User {
     }
 
     public function setPassword($password) {
-        $this->_password = base64_encode($password);
+        $this->_password =$password;
     }
 
     public function getType() {

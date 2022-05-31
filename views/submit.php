@@ -37,19 +37,27 @@
         <div class="info12">
             <button class="micon" onclick="location.href='../views/chat.php'"> CHAT </button>
             <button class="micon" onclick="location.href='../views/about.php'"> AYUDA </button>
-            <button class="micon" onclick="location.href='../index.html'"> LOG OUT </button>
+            <form action="../controllers/accessControler.php" method="POST" class="logout-icon">
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="submit" class="i1icon" value="LOG OUT">
+        </form>
         </div>
 
-        </div>
-
+        </div>        
         <div class="sub-container">
             <div class="submit">
-                <div class="subblock">SELECT A FILE OR DRAG THE FILE TO SUBMIT <br><br> <input type="file" class="art" name="art" ></div>
-                <input class="desc" type="text" placeholder="Add a description or a comment"> </input>
-                <div class="interact">
-                <button class="btn">SAVE</button>
-                <button class="btn">SUBMIT</button>
+
+                <form class="add" id="form-art" action="../controllers/postController.php" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="_method" value="POST">
+                <div class="subblock">SELECT A FILE OR DRAG THE FILE TO SUBMIT 
+                    <br><br> <input type="file" class="art" name="imagen">
                 </div>
+                <input class="desc" name="genero" type="text" placeholder="Elige el genero del dibujo"> </input>
+                <input class="desc" name="descripcion" type="text" placeholder="Add a description or a comment"> </input>
+                <div class="interact">
+                <input class="btn" type="submit" >
+                </div>
+                </form>
             </div>
         </div>
     </div>
@@ -63,6 +71,8 @@
             <li> <a href="../views/perfil.php"><img class="icon" src="../imgs/user.png" alt=""></a></li>
         </ul>
     </div>
-
+     <?php 
+        include("../assets/js/script_submit.php");
+    ?> 
 </body>
 </html>

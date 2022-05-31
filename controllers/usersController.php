@@ -1,9 +1,6 @@
 <?php 
 
-// var_dump($_POST);
-
 include("../models/DB.php");
-include("../models/User.php");
 
 try {
     $connection = DBConnection::getConnection();
@@ -15,53 +12,32 @@ catch(PDOException $e) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    if ($_POST["_method"] === "POST") {
-        $nombre = trim($_POST["nombre"]);
-        $password = trim($_POST["password"]);
+    //Obtener información del POST
+    $nombre = trim($_POST["nombre"]);
+    $email = trim($_POST["email"]);
+    $password = trim($_POST["password"]);
+        
+    $password = password_hash($password, PASSWORD_DEFAULT);
+    
+    $type = "normal";
 
-        try {
-            $query = $connection->prepare('SELECT * FROM users WHERE nombre = :nombre');
-            $query->bindParam(':nombre', $nombre, PDO::PARAM_STR);
-            $query->execute();
+    try {
+        $query = $connection->prepare('INSERT INTO usuarios VALUES(NULL, :nombre, :email,:password, :type)');
+        $query->bindParam(':nombre', $nombre, PDO::PARAM_STR);
+        $query->bindParam(':email', $email, PDO::PARAM_STR);
+        $query->bindParam(':password', $password, PDO::PARAM_STR);
+        $query->bindParam(':type', $type, PDO::PARAM_STR);
+        $query->execute();
 
-            if ($query->rowCount() === 0) {
-                echo "Usuario no encontrado";
-                exit();
-            }
-
-            $user;
-
-            while($row = $query->fetch(PDO::FETCH_ASSOC)) {
-                $user = new User($row["id"], $row["nombre"], $row["email"], $row["password"], $row["type"]);
-            }
-
-            if (!password_verify($password, $user->getPassword())) {
-                echo "Contraseña inválida";
-                exit();
-            }
-
-            session_start();
-
-            $_SESSION["id"] = $user->getId();
-            $_SESSION["nombre"] = $user->getNombre();
-            $_SESSION["email"] = $user->getEmail();
-            $_SESSION["type"] = $user->getType();
-
-            header('Location: http://localhost/proectoavance3/views/home.php');
-            exit();
+        if($query->rowCount() === 0) {
+            echo "Error en la inserción";
         }
-        catch(PDOException $e) {
-            echo $e;
+        else {
+            header('Location: http://localhost/proyectoavance3/views/login.php');
         }
     }
-    else if($_POST["_method"] === "DELETE") {
-        session_start();
-
-        session_destroy();
-
-        header('Location: http://localhost/proectoavance3/');
-
-        exit();
+    catch(PDOException $e) {
+        echo $e;
     }
 }
 

@@ -2,19 +2,21 @@
 
 class Art {
     private $_id;
-    private $_creador;
+    private $_idUser;
+    private $_nombre;
+    private $_descripcion;
     private $_imagen;
-    private $_comentario;
+    private $_genero;
     private $_timestamp;
-    private $_active;
 
-    public function __construct($id, $creador, $imagen, $comentario,$timestamp,$active) {
+    public function __construct($id, $idUser,$nombre,$descripcion, $imagen, $genero,$timestamp) {
         $this->setId($id);
-        $this->setCreador($creador);
+        $this->setidCreador($idUser);
+        $this->setNombre($nombre);
+        $this->setDescripcion($descripcion);
         $this->setImagen($imagen);
-        $this->setComentario($comentario);
+        $this->setGenero($genero);
         $this->setTimestamp($timestamp);
-        $this->setActive($active);
     }
 
     public function getId() {
@@ -25,13 +27,21 @@ class Art {
         $this->_id = $id;
     }
 
-    public function getCreador() {
-        return $this->_creador;
+    public function getidCreador() {
+        return $this->_idUser;
     }
 
-    public function setCreador($creador) {
-        $this->_creador = $creador;
+    public function setidCreador($idUser) {
+        $this->_idUser = $idUser;
     }
+    public function getNombre() {
+        return $this->_nombre;
+    }
+
+    public function setNombre($nombre) {
+        return $this->_nombre = $nombre;
+    }
+
     public function getImagen() {
         return $this->_imagen;
     }
@@ -39,12 +49,19 @@ class Art {
     public function setImagen($imagen) {
         $this->_imagen = $imagen;
     }
-    public function getComentario() {
-        return $this->_comentario;
+    public function getDescripcion() {
+        return $this->_descripcion;
     }
 
-    public function setComentario($comentario) {
-        $this->_comentario = $comentario;
+    public function setDescripcion($descripcion) {
+        $this->_descripcion = $descripcion;
+    }
+    public function getGenero() {
+        return $this->_genero;
+    }
+
+    public function setGenero($genero) {
+        $this->_genero = $genero;
     }
 
     public function getTimestamp() {
@@ -55,24 +72,17 @@ class Art {
         $this->_timestamp = $timestamp;
     }
 
-    public function getActive() {
-        return $this->_active;
-    }
-
-    public function setActive($active) {
-        $this->_active= $active;
-    }
 
     public function getArray() {
         $array = array();
 
         $array["id"] = $this->getId();
-        $array["creador"] = $this->getCreador();
+        $array["idcreador"] = $this->getidCreador();
         $array["imagen"] = $this->getImagen();
-        $array["comentario"] = $this->getComentario();
+        $array["descripcion"] = $this->getDescripcion();
         $array["timestamp"] = $this->getTimestamp();
-        $array["active"] = $this->getActive();
-
+        $array["nombre"] = $this->getNombre();
+        $array["genero"] = $this->getGenero();
         return $array;
     }
 }

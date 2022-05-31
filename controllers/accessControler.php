@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $password = trim($_POST["password"]);
 
         try {
-            $query = $connection->prepare('SELECT * FROM users WHERE nombre = :nombre');
+            $query = $connection->prepare('SELECT * FROM usuarios WHERE nombre = :nombre');
             $query->bindParam(':nombre', $nombre, PDO::PARAM_STR);
             $query->execute();
 
@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $user;
 
             while($row = $query->fetch(PDO::FETCH_ASSOC)) {
-                $user = new User($row["id"], $row["nombre"], $row["email"], $row["password"], $row["type"]);
+                $user = new User($row["id"], $row["nombre"],$row["email"], $row["password"],  $row["type"]);
             }
 
             if (!password_verify($password, $user->getPassword())) {
@@ -46,9 +46,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $_SESSION["id"] = $user->getId();
             $_SESSION["nombre"] = $user->getNombre();
             $_SESSION["email"] = $user->getEmail();
+            $_SESSION["password"] = $user->getPassword();
             $_SESSION["type"] = $user->getType();
 
-            header('Location: http://localhost/proyectoavance3/views/');
+            header('Location: http://localhost/proyectoavance3/views/home.php');
             exit();
         }
         catch(PDOException $e) {

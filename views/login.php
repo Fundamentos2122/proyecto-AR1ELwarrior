@@ -13,11 +13,15 @@
         <span class="title">LOGIN</span>
     </div>
     <div class="container">
-            <form action="./controllers/accessController.php" method="POST" autocomplete="off" class="flow">
+            <form action="../controllers/accessControler.php" method="POST" autocomplete="off" class="flow" enctype="multipart/form-data">
             <input type="hidden" name="_method" value="POST">
             <div class="form-group">
                     <label for=" username" class="form-label">USERNAME</label>
-                <input type="text" class="form-control" name="username" placeholder="Username" autocomplete="off" required>
+                <input type="text" class="form-control" name="nombre" placeholder="Username" autocomplete="off" required>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="form-label">EMAIL</label>
+                    <input type="email" class="form-control" name="email" placeholder="Email" required>
                 </div>
                 <div class="form-group">
                     <label for="password" class="form-label">PASSWORD</label>
@@ -27,9 +31,9 @@
                     <input type="checkbox" class="form-keep" name="keep"  required>
                     <label for=" keep" class="form-labelkeep">Keep me Login</label>
                 </div>
+                <a class="forgot" href="">Forgot your password?</a>
+        <input type="submit" value="LOG IN"> 
             </form>
-            <a class="forgot" href="">Forgot your password?</a>
-        <input type="submit" value="LOG IN" onclick="location.href='../views/home.php'"> 
     </div>
 </body>
 </html>
