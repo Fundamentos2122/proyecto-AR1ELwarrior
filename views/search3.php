@@ -8,11 +8,18 @@
     <title>SEARCH</title>
 </head>
 <body>
+<?php  
+    session_start();
+    if(!array_key_exists("nombre",$_SESSION)){
+        header('Location: http://localhost/proyectoavance3/views/login.php');
+        exit();
+    } 
+?>
         <div class="pcNavbar">
             <ul>
                 
                 <li> <a href="../views/home.php"><img class="icon" src="../imgs/creative-icon.png" alt=""> CreativeFolio</a></li>
-                <li> <a href="../views/search.php"><img class="icon" src="../imgs/search.png" alt=""></a><input type="search" class="search" placeholder="Search..."> </li>
+                <li> <a href="../views/search0.php"><img class="icon" src="../imgs/search.png" alt=""></a><input type="search" class="search" placeholder="Search..."> </li>
                 <li> <a href="../views/perfil.php"><img class="icon" src="../imgs/user.png" alt=""></a></li>
                 <button class="sub" onclick="location.href='../views/submit.php'">SUBMIT</button>
             </ul>
@@ -52,10 +59,13 @@
                 <div>DAILY ARTS</div>
             </div>
             <div class="info3">
-            <img class="img1" src="../imgs/comic1.jpg" alt="">
+            <div id="art-List">
+                    
+                    </div>
+            <!-- <img class="img1" src="../imgs/comic1.jpg" alt="">
                  <img class="img2" src="../imgs/comic2.jpg" alt="">
                  <img class="img3" src="../imgs/comic3.jpg" alt="">
-                 <img class="img4" src="../imgs/comic4.jpg" alt="">
+                 <img class="img4" src="../imgs/comic4.jpg" alt=""> -->
             </div>
         </div>
     </div>
@@ -63,12 +73,14 @@
     <div class="celNavbar">
         <ul>
             <li> <a href="../views/home.php"><img src="../imgs/home.png" alt="" class="icon"></a></li>
-            <li> <a href="../views/search.php"><img class="icon" src="../imgs/search.png" alt=""> </a></li>
+            <li> <a href="../views/search0.php"><img class="icon" src="../imgs/search.png" alt=""> </a></li>
             <button class="cel-sub" onclick="location.href='../views/submit.php'">+</button>
             <li> <a href="../views/chat.php"><img class="icon" src="../imgs/notif.png" alt=""></a></li>
             <li> <a href="../views/perfil.php"><img class="icon" src="../imgs/user.png" alt=""></a></li>
         </ul>
     </div>
-
+    <?php 
+        include("../assets/js/script_galeria.php");
+     ?>
 </body>
 </html>

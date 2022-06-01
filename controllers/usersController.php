@@ -10,15 +10,35 @@ catch(PDOException $e) {
 
     exit();
 }
+if ($_SERVER["REQUEST_METHOD"] === "GET") {
+    if (array_key_exists("id", $_GET)) {
+        //Obtener un solo registro
+        try {
+            $id = $_GET["id"];
+            $query = $connection->prepare('SELECT * FROM usuarios WHERE id = :id');
+            $query->bindParam(':id', $id, PDO::PARAM_INT);
+            $query->execute();
+    
+            $art;
 
+            while($row = $query->fetch(PDO::FETCH_ASSOC)) {
+                $art = new User($row['id'], $row['idUser'], $row['nombre'],$row['descripcion'],
+                 $row['imagen'], $row['genero'], $row['timestamp']);
+            }
+    
+            echo json_encode($art->getArray());
+        }
+        catch(PDOException $e) {
+            echo $e;
+        }
+    }
+}
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     //Obtener información del POST
     $nombre = trim($_POST["nombre"]);
     $email = trim($_POST["email"]);
     $password = trim($_POST["password"]);
-        
     $password = password_hash($password, PASSWORD_DEFAULT);
-    
     $type = "normal";
 
     try {

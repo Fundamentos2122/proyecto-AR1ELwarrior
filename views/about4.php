@@ -8,11 +8,18 @@
     <title>About</title>
 </head>
 <body>
+<?php  
+    session_start();
+    if(!array_key_exists("nombre",$_SESSION)){
+        header('Location: http://localhost/proyectoavance3/views/login.php');
+        exit();
+    } 
+?>
     <div class="pcNavbar">
         <ul>
     
                 <li> <a href="../views/home.php"><img class="icon" src="../imgs/creative-icon.png" alt=""> CreativeFolio</a></li>
-                <li> <a href="../views/search.php"><img class="icon" src="../imgs/search.png" alt=""></a><input type="search" class="search" placeholder="Search..."> </li>
+                <li> <a href="../views/search0.php"><img class="icon" src="../imgs/search.png" alt=""></a><input type="search" class="search" placeholder="Search..."> </li>
                 <li> <a href="../views/perfil.php"><img class="icon" src="../imgs/user.png" alt=""></a></li>
                 <button class="sub" onclick="location.href='../views/submit.php'">SUBMIT</button>
         </ul>

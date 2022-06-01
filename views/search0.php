@@ -17,7 +17,7 @@
 ?>
         <div class="pcNavbar">
             <ul>
-                
+            
                 <li> <a href="../views/home.php"><img class="icon" src="../imgs/creative-icon.png" alt=""> CreativeFolio</a></li>
                 <li> <a href="../views/search0.php"><img class="icon" src="../imgs/search.png" alt=""></a><input type="search" class="search" placeholder="Search..."> </li>
                 <li> <a href="../views/perfil.php"><img class="icon" src="../imgs/user.png" alt=""></a></li>
@@ -29,16 +29,17 @@
             <form action="../controllers/accessControler.php" method="POST" class="logout-icon">
             <input type="hidden" name="_method" value="DELETE">
             <input type="submit" class="i1icon" value="LOG OUT">
-        </form>         
+        </form>        
             </div> 
-        </div> 
-        <div class="info1">
-        <button class="i1icon"onclick="location.href='../views/search1.php'"> 3D </button>
+        
+        </div>         
+         <div class="info1">
+            <button class="i1icon"onclick="location.href='../views/search1.php'"> 3D </button>
             <button class="i1icon"onclick="location.href='../views/search2.php'"> DIGITAL ART </button>
             <button class="i1icon"onclick="location.href='../views/search3.php'"> COMIC </button>
             <button class="i1icon"onclick="location.href='../views/search4.php'"> PIXEL ART </button>
             <button class="i1icon"onclick="location.href='../views/search5.php'"> FANARTS </button>
-        </div>
+        </div> 
 
     <div class="container">
     <div class="view">
@@ -59,13 +60,13 @@
                 <div>DAILY ARTS</div>
             </div>
             <div class="info3">
-            <div id="art-List">
-                    
-                    </div>
-            <!-- <img class="img1" src="../imgs/digi1.jpg" alt="">
-                 <img class="img2" src="../imgs/digi2.jpg" alt="">
-                 <img class="img3" src="../imgs/digi3.jpg" alt="">
-                 <img class="img4" src="../imgs/digi4.jpg" alt=""> -->
+                <div id="art-List">
+
+                </div>
+                 <!-- <img class="img1" src="../imgs/imagen.jpg" alt="">
+                 <img class="img2" src="../imgs/imagen2.jpg" alt="">
+                 <img class="img3" src="../imgs/imagen3.jpg" alt="">
+                 <img class="img4" src="../imgs/imagen4.jpg" alt=""> -->
             </div>
         </div>
     </div>
@@ -79,7 +80,7 @@
             <li> <a href="../views/perfil.php"><img class="icon" src="../imgs/user.png" alt=""></a></li>
         </ul>
     </div>
-    <?php 
+<?php 
         include("../assets/js/script_galeria.php");
      ?>
 </body>

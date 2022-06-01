@@ -1,14 +1,14 @@
 <script>
-//const formArt = document.getElementById("form-art");
-/*const modalTweet = document.getElementById("modalTweet");
-const modalDeleteTweet = document.getElementById("modalDeleteTweet");
+const formArt = document.getElementById("form-art");
+const modalArt = document.getElementById("modalArt");
+const modalDeleteArt = document.getElementById("modalDeleteArt");
 const idEdit = document.getElementById("form-edit-id");
 const idDelete = document.getElementById("form-delete-id");
 const textAreaEdit = document.getElementById("form-edit-text");
-const btnSaveEdit = document.getElementById("btnSaveEdit");*/
-//const keyList = "artList";
+const btnSaveEdit = document.getElementById("btnSaveEdit");
+const keyList = "artList";
 
-const artList = document.getElementById("artList");
+const artList = document.getElementById("art-List");
 
 document.addEventListener("DOMContentLoaded", function() {
     //Agregar evento al formulario
@@ -16,157 +16,163 @@ document.addEventListener("DOMContentLoaded", function() {
 
     getArts();
 
-    //let modals = document.getElementsByClassName("modal");
+    let modals = document.getElementsByClassName("modal");
 
-    /*for(var i = 0; i < modals.length; i++) {
+    for(var i = 0; i < modals.length; i++) {
         modals[i].addEventListener("click", function(e) {
             if(e.target === this){
                 this.classList.remove("show");
             }
         });
-    }*/
+    }
 
     // btnSaveEdit.addEventListener("click", saveEdit);
 });
-
 function paintArts(list) {
     let html = '';
     var usuario = <?php echo json_encode($_SESSION, JSON_HEX_TAG); ?>;
     for(var i = 0; i < list.length; i++) {
         // console.log(name);
-        if(usuario.type === "normal"){
+     if(usuario.type === "admin"){
             if(usuario.nombre === list[i].nombre){
             html += 
-            `<div id= " ${list[i].id}">
+            `<div class="sub-container" ${list[i].id}>
+            
             <div class="info2">
-                <div><img class="profimg" src="../imgs/wy2.jpg" alt=""></div>
+                <div><img class="profimg" src="../imgs/pimg.jpg" alt=""></div>
                 <div> ${list[i].nombre}</div>
                 <button class="follow">FOLLOWING</button>
-                <div><img class="profimg" src="../imgs/edit.png" alt=""></div>
+                <button class=\"btn-option\" onclick=\"deleteArt(${list[i].id})\">
+                        <i class=\"fa-solid fa-xmark\"></i>
+                    </button>
             </div>
             <div class="info4">
-                <div class="mensaje"> ${list[i].descripcion}</div>
+                <div class="mensaje">  ${list[i].descripcion}</div>
             </div>
             <div class="info3">
-                <div  class="img" ><img class="img" src="${list[i].imagen}" alt=""></div>
+                <div  class="img" ><img class="img" src=" data:image/jpeg;base64,${list[i].imagen}" alt=""></div>
                 <div class="interact">
                     <div class="intitem"> <img class="icon" src="../imgs/like.png" alt=""></div>
                     <div class="intitem"> <img class="icon" src="../imgs/comment.png" alt=""></div>
                     <div class="intitem"  onclick="location.href='../views/share.php'"> <img class="icon" src="../imgs/share.png" alt="" ></div>  
                 </div>
                 <div class="info5">
-                <div class="comentario"> wow esta increible</div>
+                <div class="comentario"> </div>
             </div>
                 <input class="comment" type="text" placeholder="Add a comment"> </input>
 
             </div>
-            </div>`;
+        </div> `;
         }
         else{
             html += 
-            `<div id= " ${list[i].id}">
+           `<div class="sub-container" ${list[i].id}>
+            
             <div class="info2">
-                <div><img class="profimg" src="../imgs/wy2.jpg" alt=""></div>
+                <div><img class="profimg" src="../imgs/pimg.jpg" alt=""></div>
                 <div> ${list[i].nombre}</div>
                 <button class="follow">FOLLOWING</button>
-            </div>
+                <button class=\"btn-option\" onclick=\"deleteArt(${list[i].id})\">
+                        <i class=\"fa-solid fa-xmark\"></i>
+                    </button>
+                    </div>
             <div class="info4">
-                <div class="mensaje"> ${list[i].descripcion}</div>
+                <div class="mensaje">  ${list[i].descripcion}</div>
             </div>
             <div class="info3">
-                <div  class="img" ><img class="img" src="${list[i].imagen}" alt=""></div>
+                <div  class="img" ><img class="img" src=" data:image/jpeg;base64,${list[i].imagen}" alt=""></div>
                 <div class="interact">
                     <div class="intitem"> <img class="icon" src="../imgs/like.png" alt=""></div>
                     <div class="intitem"> <img class="icon" src="../imgs/comment.png" alt=""></div>
                     <div class="intitem"  onclick="location.href='../views/share.php'"> <img class="icon" src="../imgs/share.png" alt="" ></div>  
                 </div>
                 <div class="info5">
-                <div class="comentario"> wow esta increible</div>
+                <div class="comentario"> </div>
             </div>
                 <input class="comment" type="text" placeholder="Add a comment"> </input>
 
             </div>
-            </div>`;
+        </div> `;
         }
         }
         else{
             if(usuario.nombre === list[i].nombre){
             html += 
-            `<div id= " ${list[i].id}">
+            `<div class="sub-container" ${list[i].id}>
+            
             <div class="info2">
-                <div><img class="profimg" src="../imgs/wy2.jpg" alt=""></div>
+                <div><img class="profimg" src="../imgs/pimg.jpg" alt=""></div>
                 <div> ${list[i].nombre}</div>
                 <button class="follow">FOLLOWING</button>
                 <div><img class="profimg" src="../imgs/edit.png" alt=""></div>
-                <div><img class="profimg" src="../imgs/cerrar.png" alt=""></div>
             </div>
             <div class="info4">
-                <div class="mensaje"> ${list[i].descripcion}</div>
+                <div class="mensaje">  ${list[i].descripcion}</div>
             </div>
             <div class="info3">
-                <div  class="img" ><img class="img" src="${list[i].imagen}" alt=""></div>
+                <div  class="img" ><img class="img" src=" data:image/jpeg;base64,${list[i].imagen}" alt=""></div>
                 <div class="interact">
                     <div class="intitem"> <img class="icon" src="../imgs/like.png" alt=""></div>
                     <div class="intitem"> <img class="icon" src="../imgs/comment.png" alt=""></div>
                     <div class="intitem"  onclick="location.href='../views/share.php'"> <img class="icon" src="../imgs/share.png" alt="" ></div>  
                 </div>
                 <div class="info5">
-                <div class="comentario"> wow esta increible</div>
+                <div class="comentario"> </div>
             </div>
                 <input class="comment" type="text" placeholder="Add a comment"> </input>
 
             </div>
-            </div>`;
+        </div> `;
         }
         else{
             html += 
-            `<div id= " ${list[i].id}">
+            `<div class="sub-container" ${list[i].id}>
+            
             <div class="info2">
-                <div><img class="profimg" src="../imgs/wy2.jpg" alt=""></div>
+                <div><img class="profimg" src="../imgs/pimg.jpg" alt=""></div>
                 <div> ${list[i].nombre}</div>
                 <button class="follow">FOLLOWING</button>
-                <div><img class="profimg" src="../imgs/edit.png" alt=""></div>
-                <div><img class="profimg" src="../imgs/cerrar.png" alt=""></div>
             </div>
             <div class="info4">
-                <div class="mensaje"> ${list[i].descripcion}</div>
+                <div class="mensaje">  ${list[i].descripcion}</div>
             </div>
             <div class="info3">
-                <div  class="img" ><img class="img" src="${list[i].imagen}" alt=""></div>
+                <div  class="img" ><img class="img" src=" data:image/jpeg;base64,${list[i].imagen}" alt=""></div>
                 <div class="interact">
                     <div class="intitem"> <img class="icon" src="../imgs/like.png" alt=""></div>
                     <div class="intitem"> <img class="icon" src="../imgs/comment.png" alt=""></div>
                     <div class="intitem"  onclick="location.href='../views/share.php'"> <img class="icon" src="../imgs/share.png" alt="" ></div>  
                 </div>
                 <div class="info5">
-                <div class="comentario"> wow esta increible</div>
+                <div class="comentario"> </div>
             </div>
                 <input class="comment" type="text" placeholder="Add a comment"> </input>
 
             </div>
-            </div>`;
-        }           
-        }        
+        </div> `;
+        }
+            
+        }      
     }
         artList.innerHTML = html;
 }
 
-function hideDelete() {
-    let btnDelete = document.querySelectorAll("button[onclick^='deleteArt']");
-
-    btnDelete.forEach(btn => btn.remove());
-}
+ function hideDelete() {
+     let btnDelete = document.querySelectorAll("button[onclick^='deleteArt']");
+     btnDelete.forEach(btn => btn.remove());
+ }
 
 function getArts() {
     let xhttp = new XMLHttpRequest();
 
-    xhttp.open("GET","../controllers/postController.php",true);
+    xhttp.open("GET", "../controllers/postController.php", true);
 
     xhttp.onreadystatechange = function(){
         if (this.readyState === 4) {
             if (this.status === 200) {
                 console.log(this.responseText);
-                let list=JSON.parse(this.responseText);
+                let list = JSON.parse(this.responseText);
+
                 paintArts(list);
             }
             else {

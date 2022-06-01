@@ -8,11 +8,18 @@
     <title>Profile</title>
 </head>
 <body>
+<?php  
+    session_start();
+    if(!array_key_exists("nombre",$_SESSION)){
+        header('Location: http://localhost/proyectoavance3/views/login.php');
+        exit();
+    } 
+?>
     <div class="pcNavbar">
         <ul>
         
                 <li> <a href="../views/home.php"><img class="icon" src="../imgs/creative-icon.png" alt=""> CreativeFolio</a></li>
-                <li> <a href="../views/search.php"><img class="icon" src="../imgs/search.png" alt=""></a><input type="search" class="search" placeholder="Search..."> </li>
+                <li> <a href="../views/search0.php"><img class="icon" src="../imgs/search.png" alt=""></a><input type="search" class="search" placeholder="Search..."> </li>
                 <li> <a href="../views/perfil.php"><img class="icon" src="../imgs/user.png" alt=""></a></li>
                 <button class="sub" onclick="location.href='../views/submit.php'">SUBMIT</button>
         </ul>
@@ -45,13 +52,8 @@
 
     <div class="container">
         <div class="personal">
-            <div class="data1">
-                <div><img class="imgprofile" src="../imgs/pimg.jpg" alt=""></div>
-            <div>ELARIEL</div>
-            <div>Account: admin</div>
-            </div>
-
-            <div class="data2">
+        <div class="data2">
+            <div><img class="imgprofile" src="../imgs/pimg.jpg" alt=""></div>
             <div>Watchers: 50</div>
             <div>Watching: 120</div>
             <div>Art:25</div>
@@ -75,7 +77,7 @@
     <div class="celNavbar">
         <ul>
             <li> <a href="../views/home.php"><img src="../imgs/home.png" alt="" class="icon"></a></li>
-            <li> <a href="../views/search.php"><img class="icon" src="../imgs/search.png" alt=""> </a></li>
+            <li> <a href="../views/search0.php"><img class="icon" src="../imgs/search.png" alt=""> </a></li>
             <button class="cel-sub" onclick="location.href='../views/submit.php'">+</button>
             <li> <a href="../views/chat.php"><img class="icon" src="../imgs/notif.png" alt=""></a></li>
             <li> <a href="../views/perfil.php"><img class="icon" src="../imgs/user.png" alt=""></a></li>

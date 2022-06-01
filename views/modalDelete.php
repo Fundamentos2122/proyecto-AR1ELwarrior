@@ -8,7 +8,7 @@
                 <form action="../controllers/postController.php" method="POST">
                     <input type="hidden" name="_method" value="DELETE">
                     <input type="hidden" name="id" value="" id="form-delete-id">
-                    <p>¿Seguro que desea elminiar este registro?</p>
+                    <p>¿Seguro que desea elminiar esta publicacion?</p>
                     <input type="submit" value="Aceptar">
                 </form>
             </div>

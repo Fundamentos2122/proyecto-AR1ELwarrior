@@ -8,12 +8,19 @@
     <title>Home</title>
 </head>
 <body>
+<?php  
+    session_start();
+    if(!array_key_exists("nombre",$_SESSION)){
+        header('Location: http://localhost/proyectoavance3/views/login.php');
+        exit();
+    } 
+?>
     <div class="headercontent">
         <div class="pcNavbar">
             <ul>
                 
                 <li> <a href="../views/home.php"><img class="icon" src="../imgs/creative-icon.png" alt=""> CreativeFolio</a></li>
-                <li> <a href="../views/search.php"><img class="icon" src="../imgs/search.png" alt=""></a><input type="search" class="search" placeholder="Search..."> </li>
+                <li> <a href="../views/search0.php"><img class="icon" src="../imgs/search.png" alt=""></a><input type="search" class="search" placeholder="Search..."> </li>
                 <li> <a href="../views/perfil.php"><img class="icon" src="../imgs/user.png" alt=""></a></li>
                 <button class="btnsub" onclick="location.href='../views/submit.php'">SUBMIT</button>
             </ul>
@@ -49,8 +56,7 @@
 
                 <form class="add" id="form-art" action="../controllers/postController.php" method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="_method" value="POST">
-                <div class="subblock">SELECT A FILE OR DRAG THE FILE TO SUBMIT 
-                    <br><br> <input type="file" class="art" name="imagen">
+                <div class="subblock">SELECT A FILE OR DRAG THE FILE TO SUBMIT <input type="file" class="art" name="imagen">
                 </div>
                 <input class="desc" name="genero" type="text" placeholder="Elige el genero del dibujo"> </input>
                 <input class="desc" name="descripcion" type="text" placeholder="Add a description or a comment"> </input>
@@ -65,14 +71,11 @@
     <div class="celNavbar">
         <ul>
             <li> <a href="../views/home.php"><img src="../imgs/home.png" alt="" class="icon"></a></li>
-            <li> <a href="../views/search.php"><img class="icon" src="../imgs/search.png" alt=""> </a></li>
+            <li> <a href="../views/search0.php"><img class="icon" src="../imgs/search.png" alt=""> </a></li>
             <button class="cel-sub">+</button>
             <li> <a href="../views/chat.php"><img class="icon" src="../imgs/notif.png" alt=""></a></li>
             <li> <a href="../views/perfil.php"><img class="icon" src="../imgs/user.png" alt=""></a></li>
         </ul>
     </div>
-     <?php 
-        include("../assets/js/script_submit.php");
-    ?> 
 </body>
 </html>

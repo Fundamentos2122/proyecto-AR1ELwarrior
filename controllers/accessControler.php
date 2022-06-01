@@ -48,7 +48,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $_SESSION["email"] = $user->getEmail();
             $_SESSION["password"] = $user->getPassword();
             $_SESSION["type"] = $user->getType();
-
             header('Location: http://localhost/proyectoavance3/views/home.php');
             exit();
         }
@@ -58,11 +57,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
     else if($_POST["_method"] === "DELETE") {
         session_start();
-
         session_destroy();
-
         header('Location: http://localhost/proyectoavance3/');
-
         exit();
     }
 }

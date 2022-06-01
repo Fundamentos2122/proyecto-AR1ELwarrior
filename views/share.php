@@ -8,12 +8,19 @@
     <title>Home</title>
 </head>
 <body>
+<?php  
+    session_start();
+    if(!array_key_exists("nombre",$_SESSION)){
+        header('Location: http://localhost/proyectoavance3/views/login.php');
+        exit();
+    } 
+?>
     <div class="headercontent">
         <div class="pcNavbar">
             <ul>
                 
                 <li> <a href="../views/home.php"><img class="icon" src="../imgs/creative-icon.png" alt=""> CreativeFolio</a></li>
-                <li> <a href="../views/search.php"><img class="icon" src="../imgs/search.png" alt=""></a><input type="search" class="search" placeholder="Search..."> </li>
+                <li> <a href="../views/search0.php"><img class="icon" src="../imgs/search.png" alt=""></a><input type="search" class="search" placeholder="Search..."> </li>
                 <li> <a href="../views/perfil.php"><img class="icon" src="../imgs/user.png" alt=""></a></li>
                 <button class="btnsub" onclick="location.href='../views/submit.php'">SUBMIT</button>
             </ul>
@@ -62,7 +69,7 @@
     <div class="celNavbar">
         <ul>
             <li> <a href="../views/home.php"><img src="../imgs/home.png" alt="" class="icon"></a></li>
-            <li> <a href="../views/search.php"><img class="icon" src="../imgs/search.png" alt=""> </a></li>
+            <li> <a href="../views/search0.php"><img class="icon" src="../imgs/search.png" alt=""> </a></li>
             <button class="cel-sub">+</button>
             <li> <a href="../views/chat.php"><img class="icon" src="../imgs/notif.png" alt=""></a></li>
             <li> <a href="../views/perfil.php"><img class="icon" src="../imgs/user.png" alt=""></a></li>

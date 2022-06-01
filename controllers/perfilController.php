@@ -92,7 +92,7 @@ else if($_SERVER["REQUEST_METHOD"] === "POST"){
             postArt($iduser,$nombre,$_POST["descripcion"],$photo,$_POST["genero"],true);//future
         }
         else if($_POST["_method"] === "PUT"){
-            putArt($_POST["nombre"],$_POST["descripcion"],$_POST["imagen"],$_POST["genero"],$_POST["timestamp"],true);//future
+            putArt($iduser,$_POST["nombre"],$_POST["descripcion"],$_POST["imagen"],$_POST["genero"],$_POST["timestamp"],true);//future
         }
     }
     else if(array_key_exists("id",$_POST)){
@@ -139,11 +139,12 @@ function postArt($iduser,$nombre,$descripcion,$imagen,$genero,$redirect){
 
 }
 
-function putArt($id,$nombre,$descripcion,$imagen,$genero,$redirect){
+function putArt($id,$iduser,$nombre,$descripcion,$imagen,$genero,$redirect){
     global $connection;
     try{
-        $query = $connection->prepare('UPDATE publications SET nombre = :nombre, descripcion = :descripcion, imagen = :imagen, genero = :genero WHERE id = :id');//Para actualizar es con una coma
+        $query = $connection->prepare('UPDATE publications SET nombre = :nombre,iduser = :idUser, descripcion = :descripcion, imagen = :imagen, genero = :genero WHERE id = :id');//Para actualizar es con una coma
         $query->bindParam(':id', $id, PDO::PARAM_INT);
+        $query->bindParam(':idUser', $iduser, PDO::PARAM_INT);
         $query->bindParam(':nombre', $nombre, PDO::PARAM_STR);
         $query->bindParam(':descripcion', $descripcion, PDO::PARAM_STR);
         $query->bindParam(':imagen', $imagen, PDO::PARAM_STR);
@@ -182,7 +183,7 @@ function deleteArt($id, $redirect) {
         }
         else {
             if ($redirect) {
-                header('Location: http://localhost/proyectoavance3/views/home.php');
+                header('Location: http://localhost/proyectoavance3/views/submit.php');
             }
             else {
                 echo "Registro eliminado";

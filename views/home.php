@@ -14,13 +14,12 @@
         header('Location: http://localhost/proyectoavance3/views/login.php');
         exit();
     } 
-
 ?>
     <div class="headercontent">
         <div class="pcNavbar">
             <ul>
                 <li> <a href="../views/home.php"><img class="icon" src="../imgs/creative-icon.png" alt=""> CreativeFolio</a></li>
-                <li> <a href="../views/search.php"><img class="icon" src="../imgs/search.png" alt=""></a><input type="search" class="search" placeholder="Search..."> </li>
+                <li> <a href="../views/search0.php"><img class="icon" src="../imgs/search.png" alt=""></a><input type="search" class="search" placeholder="Search..."> </li>
                 <li> <a href="../views/perfil.php"><img class="icon" src="../imgs/user.png" alt=""></a></li>
                 <button class="sub" onclick="location.href='../views/submit.php'">SUBMIT</button>
             </ul>
@@ -55,34 +54,14 @@
         </form>
         </div>
         </div>
-        <div class="sub-container">
-        <div id="artList">
 
-        </div>
+        <div id="art-List">
+
         </div>
         <!-- <div class="sub-container">
-            <div class="info2">
-                <div><img class="profimg" src="../imgs/wy.jpg" alt=""></div>
-                <div> WIZYAKUZA</div>
-                <button class="follow">+FOLLOW</button>
-                <div><img class="profimg" src="../imgs/edit.png" alt=""></div>
-                <div><img class="profimg" src="../imgs/cerrar.png" alt=""></div>
-            </div>
-            <div class="info3">
-                <div  class="img" ><img class="img" src="../imgs/imagen.jpg" alt=""></div>
-                <div class="interact">
-                    <div class="intitem"> <img class="icon" src="../imgs/like.png" alt=""></div>
-                    <div class="intitem"> <img class="icon" src="../imgs/comment.png" alt=""></div>
-                    <div class="intitem"  onclick="location.href='../views/share.php'"> <img class="icon" src="../imgs/share.png" alt="" ></div>  
-                </div>
-                <input class="comment" type="text" placeholder="Add a comment"> </input>
-
-            </div>
-        </div>
-        <div class="sub-container">
             
             <div class="info2">
-                <div><img class="profimg" src="../imgs/wy2.jpg" alt=""></div>
+                <div><img class="profimg" src="../imgs/pimg.jpg" alt=""></div>
                 <div> ElinTan</div>
                 <button class="follow">FOLLOWING</button>
                 <div><img class="profimg" src="../imgs/edit.png" alt=""></div>
@@ -104,20 +83,20 @@
                 <input class="comment" type="text" placeholder="Add a comment"> </input>
 
             </div>
-        </div> -->
+        </div>  -->
     </div>
     <div class="celNavbar">
         <ul>
         <li> <a href="../views/home.php"><img src="../imgs/home.png" alt="" class="icon"></a></li>
-            <li> <a href="../views/search.php"><img class="icon" src="../imgs/search.png" alt=""> </a></li>
+            <li> <a href="../views/search0.php"><img class="icon" src="../imgs/search.png" alt=""> </a></li>
             <button class="cel-sub" onclick="location.href='../views/submit.php'">+</button>
             <li> <a href="../views/chat.php"><img class="icon" src="../imgs/notif.png" alt=""></a></li>
             <li> <a href="../views/perfil.php"><img class="icon" src="../imgs/user.png" alt=""></a></li>
         </ul>
     </div>
     <?php 
+    include("modalDelete.php"); 
         include("../assets/js/script_submit.php");
      ?>
-    <!-- <script src="../assets/js/script_submit.php"></script> -->
 </body>
 </html>

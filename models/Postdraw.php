@@ -9,14 +9,13 @@ class Art {
     private $_genero;
     private $_timestamp;
 
-    public function __construct($id, $idUser,$nombre,$descripcion, $imagen, $genero,$timestamp) {
+    public function __construct($id, $idUser,$nombre,$descripcion, $imagen, $genero) {
         $this->setId($id);
         $this->setidCreador($idUser);
         $this->setNombre($nombre);
         $this->setDescripcion($descripcion);
         $this->setImagen($imagen);
         $this->setGenero($genero);
-        $this->setTimestamp($timestamp);
     }
 
     public function getId() {
@@ -47,7 +46,7 @@ class Art {
     }
 
     public function setImagen($imagen) {
-        $this->_imagen = $imagen;
+        $this->_imagen = base64_encode($imagen);
     }
     public function getDescripcion() {
         return $this->_descripcion;
@@ -77,11 +76,10 @@ class Art {
         $array = array();
 
         $array["id"] = $this->getId();
-        $array["idcreador"] = $this->getidCreador();
-        $array["imagen"] = $this->getImagen();
-        $array["descripcion"] = $this->getDescripcion();
-        $array["timestamp"] = $this->getTimestamp();
+        $array["idUser"] = $this->getidCreador();
         $array["nombre"] = $this->getNombre();
+        $array["descripcion"] = $this->getDescripcion();
+        $array["imagen"] = $this->getImagen();      
         $array["genero"] = $this->getGenero();
         return $array;
     }
