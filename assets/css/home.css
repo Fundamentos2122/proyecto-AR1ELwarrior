@@ -197,6 +197,12 @@ a{
     border-radius: 10px;
     border: solid black;
 }
+i{
+    width: 3em;
+}
+.fa-solid{
+width: 3em;
+}
 .view ul{
     list-style-type: none;
     display: flex;
@@ -211,6 +217,10 @@ a{
     border-radius: 10px;
     margin-right: 1em;
 }
+.img-fluid {
+    max-width: 100%;
+}
+
 .celNavbar ul{
     list-style-type: none;
     display: flex;
@@ -224,18 +234,28 @@ a{
     top: 0;
     border-radius: 10px;
 }
+.options {
+    display: flex;
+    margin-left: 1em;
+}
 .btn-option {
     cursor: pointer;
     border: none;
     background-color: transparent;
-    color: lightgray;
+    color: black;
+   
 }
 .btn-option:hover {
-    color: black;
+    color: white;
 }
 
 .hide {
     opacity: 0;
+}
+.flex-center {
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
 }
 .modal {
     display: none;
@@ -250,6 +270,7 @@ a{
     background-color: rgba(0, 0, 0, 0.25);
     transition: display ease 1000ms;
     -webkit-transition: display ease 1000ms;
+ 
 }
 
 .modal-dialog {
@@ -289,7 +310,21 @@ a{
 }
 
 .show {
-    display: flex;
+    display: block;
+}
+input[type="submit"], .btn {
+    cursor: pointer;
+    background-color: teal;
+    color: white;
+    border: 1px solid teal;
+    padding: 0.5em;
+    transition: 
+        background-color ease 150ms,
+        color ease 150ms;
+}
+input[type="submit"]:hover, .btn:hover {
+    background-color: white;
+    color: teal;
 }
 @media(min-width: 780px){
     .icon{

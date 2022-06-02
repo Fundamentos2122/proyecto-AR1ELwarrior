@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/d5ef93086f.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../assets/css/home.css">
     <title>Home</title>
 </head>
@@ -58,32 +59,36 @@
         <div id="art-List">
 
         </div>
-        <!-- <div class="sub-container">
+         <!-- <div class="sub-container" >
             
             <div class="info2">
                 <div><img class="profimg" src="../imgs/pimg.jpg" alt=""></div>
-                <div> ElinTan</div>
+                <div name= nombreuser></div>
                 <button class="follow">FOLLOWING</button>
-                <div><img class="profimg" src="../imgs/edit.png" alt=""></div>
-                <div><img class="profimg" src="../imgs/cerrar.png" alt=""></div>
             </div>
             <div class="info4">
-                <div class="mensaje"> ESTE ES UN COMENTARIO</div>
+                <div class="mensaje"> </div>
             </div>
             <div class="info3">
-                <div  class="img" ><img class="img" src="../imgs/post2.jpg" alt=""></div>
+                <div  class="img" ><img class="img" src=" data:image/jpeg;base64,${list[i].imagen}" alt=""></div>
                 <div class="interact">
-                    <div class="intitem"> <img class="icon" src="../imgs/like.png" alt=""></div>
-                    <div class="intitem"> <img class="icon" src="../imgs/comment.png" alt=""></div>
-                    <div class="intitem"  onclick="location.href='../views/share.php'"> <img class="icon" src="../imgs/share.png" alt="" ></div>  
+                <form class="add" id="form-fav" action="../controllers/favoritoController.php" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="_method" value="POST">
+                <input class="intitem" type="image"  src="../imgs/like.png" width="100px" alt="Submit">
+                </form>
+                <div class="intitem"  onclick="location.href='../views/share.php'"> <img class="icon" src="../imgs/share.png" alt="" ></div>
+                    <form class="add" id="form-com" action="../controllers/comentController.php" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="_method" value="POST">
+                    <input type="hidden" name="id" value="">s
+                    <input class="intitem" type="image"  src="../imgs/comment.png" width="100px" alt="Submit">
+                    <div>
+                    <input name= "texto" class="comment" type="text" placeholder="Add a comment" width="50%"> </input>
+                    </div>
+                    </form>
                 </div>
-                <div class="info5">
-                <div class="comentario"> wow esta increible</div>
-            </div>
-                <input class="comment" type="text" placeholder="Add a comment"> </input>
-
-            </div>
-        </div>  -->
+                    <div class="info5"> ESTE ES UN COMENTARIO <div id= "com-List" class="comentario"> </div>  </div>  
+                </div> 
+            </div>   -->
     </div>
     <div class="celNavbar">
         <ul>
@@ -96,6 +101,7 @@
     </div>
     <?php 
     include("modalDelete.php"); 
+    include("modalPostEdit.php"); 
         include("../assets/js/script_submit.php");
      ?>
 </body>

@@ -92,7 +92,7 @@ else if($_SERVER["REQUEST_METHOD"] === "POST"){
             postArt($iduser,$nombre,$_POST["descripcion"],$photo,$_POST["genero"],true);//future
         }
         else if($_POST["_method"] === "PUT"){
-            putArt($_POST["nombre"],$_POST["descripcion"],$_POST["imagen"],$_POST["genero"],$_POST["timestamp"],true);//future
+            putArt($_POST["id"],$_POST["descripcion"],true);//future
         }
     }
     else if(array_key_exists("id",$_POST)){
@@ -139,15 +139,12 @@ function postArt($iduser,$nombre,$descripcion,$imagen,$genero,$redirect){
 
 }
 
-function putArt($id,$nombre,$descripcion,$imagen,$genero,$redirect){
+function putArt($id,$descripcion,$redirect){
     global $connection;
     try{
-        $query = $connection->prepare('UPDATE publications SET nombre = :nombre, descripcion = :descripcion, imagen = :imagen, genero = :genero WHERE id = :id');//Para actualizar es con una coma
+        $query = $connection->prepare('UPDATE publications SET descripcion = :descripcion WHERE id = :id');//Para actualizar es con una coma
         $query->bindParam(':id', $id, PDO::PARAM_INT);
-        $query->bindParam(':nombre', $nombre, PDO::PARAM_STR);
         $query->bindParam(':descripcion', $descripcion, PDO::PARAM_STR);
-        $query->bindParam(':imagen', $imagen, PDO::PARAM_STR);
-        $query->bindParam(':genero', $genero, PDO::PARAM_STR);
         $query->execute();
 
         if($query->rowCount() === 0){
@@ -156,7 +153,7 @@ function putArt($id,$nombre,$descripcion,$imagen,$genero,$redirect){
         else{
             // echo "Registro guardado";
             if($redirect){
-                header('Location: http://localhost/proyectoavance3/views/submit.php');
+                header('Location: ' . $_SERVER['HTTP_REFERER']);
             }
             else{
                 echo "Registro guardado";
@@ -171,9 +168,8 @@ function putArt($id,$nombre,$descripcion,$imagen,$genero,$redirect){
 }
 function deleteArt($id, $redirect) {
     global $connection;
-
     try {
-        $query = $connection->prepare('UPDATE publications WHERE id = :id');
+        $query = $connection->prepare('DELETE FROM publications WHERE id = :id');
         $query->bindParam(':id', $id, PDO::PARAM_INT);
         $query->execute();
 

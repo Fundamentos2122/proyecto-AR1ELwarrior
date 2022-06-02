@@ -1,16 +1,18 @@
 <?php 
 
-class User {
+class Coment {
     private $_id;
-    private $_idAutor;
-    private $_idPost;
+    private $_iduser;
+    private $_idpost;
+    private $_nombreuser;
     private $_texto;
 
-    public function __construct($id,$idAutor,$idPost, $texto) {
+    public function __construct($id,$iduser,$idpost, $nombreuser, $texto) {
         $this->setId($id);
-        $this->setIdAutor($idAutor);
-        $this->setNombre($idPost);
-        $this->setEmail($texto);
+        $this->setIdAutor($iduser);
+        $this->setIdPost($idpost);
+        $this->setNombre($nombreuser);
+        $this->setTexto($texto);
     }
 
     public function getId() {
@@ -21,20 +23,27 @@ class User {
         $this->_id = $id;
     }
     public function getIdAutor() {
-        return $this->_idAutor;
+        return $this->_iduser;
     }
 
-    public function setIdAutor($idAutor) {
-        $this->_idAutor = $idAutor;
+    public function setIdAutor($iduser) {
+        $this->_iduser = $iduser;
     }
 
 
-    public function getidPost() {
-        return $this->_idPost;
+    public function getIdPost() {
+        return $this->_idpost;
     }
 
-    public function setidPost($idPost) {
-        $this->_idPost = $idPost;
+    public function setIdPost($idpost) {
+        $this->_idpost = $idpost;
+    }
+    public function getNombre() {
+        return $this->_nombreuser;
+    }
+
+    public function setNombre($nombreuser) {
+        $this->_nombreuser = $nombreuser;
     }
 
     public function getTexto() {
@@ -49,8 +58,9 @@ class User {
         $array = array();
 
         $array["id"] = $this->getId();
-        $array["idAutor"] = $this->getidAutor();
-        $array["idPost"] = $this->getidPost();
+        $array["iduser"] = $this->getidAutor();
+        $array["idpost"] = $this->getidPost();
+        $array["nombreuser"] = $this->getNombre();
         $array["texto"] = $this->getTexto();
 
         return $array;

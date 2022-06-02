@@ -46,8 +46,6 @@
             <button class="i1icon" onclick="location.href='../index.html'"> LOG OUT </button>
         </div>
         </div>
-
-
     <div class="container">
         <div class="personal">
         <div class="data2">
@@ -57,7 +55,7 @@
             <div>Art:25</div>
             </div>
 
-            <button class="edit" onclick="location.href='../views/editprofile.php'">EDIT PROFILE</button>
+            <!-- <button class="edit" onclick="location.href='../views/editprofile.php'">EDIT PROFILE</button> -->
             
         </div>
 

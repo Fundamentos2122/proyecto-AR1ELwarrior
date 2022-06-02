@@ -1,14 +1,14 @@
 <?php 
 
-class Art {
+class Fav {
     private $_id;
-    private $_idcreador;
-    private $_imagen;
+    private $_iduser;
+    private $_idimg;
 
-    public function __construct($id, $idcreador, $imagen) {
+    public function __construct($id,$iduser, $idimg) {
         $this->setId($id);
-        $this->setidCreador($idcreador);
-        $this->setImagen($imagen);
+        $this->setIdCreador($iduser);
+        $this->setIdImagen($idimg);
     }
 
     public function getId() {
@@ -19,29 +19,27 @@ class Art {
         $this->_id = $id;
     }
 
-    public function getidCreador() {
-        return $this->_idcreador;
+    public function getIdCreador() {
+        return $this->_iduser;
     }
 
-    public function setidCreador($idcreador) {
-        $this->_idcreador = $idcreador;
+    public function setIdCreador($iduser) {
+        $this->_iduser = $iduser;
+    }
+    public function getIdImagen() {
+        return $this->_idimg;
     }
 
-    public function getImagen() {
-        return $this->_imagen;
+    public function setIdImagen($idimg) {
+        $this->_idimg =$idimg;
     }
-
-    public function setImagen($imagen) {
-        $this->_imagen = $imagen;
-    }
-
 
     public function getArray() {
         $array = array();
 
         $array["id"] = $this->getId();
-        $array["idcreador"] = $this->getidCreador();
-        $array["imagen"] = $this->getImagen();
+        $array["iduser"] = $this->getIdCreador();
+        $array["idimg"] = $this->getIdImagen();
         return $array;
     }
 }

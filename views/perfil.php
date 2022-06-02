@@ -54,12 +54,13 @@
 
             <div class="data2">
             <div><img class="imgprofile" src="../imgs/pimg.jpg" alt=""></div>
+            <div id="nombre"></div>
             <div>Watchers: 50</div>
             <div>Watching: 120</div>
             <div>Art:25</div>
             </div>
 
-            <button class="edit" onclick="location.href='../views/editprofile.php'">EDIT PROFILE</button>
+           <!-- // <button class="edit" onclick="location.href='../views/editprofile.php'">EDIT PROFILE</button> -->
             
         </div>
 
@@ -85,6 +86,7 @@
     </div>
     <?php 
         include("../assets/js/script_galeria2.php");
+       
      ?>
 </body>
 </html>

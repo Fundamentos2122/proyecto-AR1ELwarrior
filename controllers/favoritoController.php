@@ -1,7 +1,7 @@
 <?php 
 
 include("../models/DB.php");
-include("../models/Comment.php");
+include("../models/Favoritos.php");
 
 try {
     $connection = DBConnection::getConnection();
@@ -18,18 +18,17 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
         try {
             $id = $_GET["id"];
 
-            $query = $connection->prepare('SELECT * FROM comentarios WHERE id = :id');
+            $query = $connection->prepare('SELECT * FROM favoritos WHERE id = :id');
             $query->bindParam(':id', $id, PDO::PARAM_INT);
             $query->execute();
     
-            $com;
+            $fav;
 
             while($row = $query->fetch(PDO::FETCH_ASSOC)) {
-                $com = new Coment($row['id'], $row['iduser'], $row['idpost'],$row['nombreuser'],
-                 $row['texto']);
+                $fav = new Fav($row['id'], $row['iduser'], $row['idimg']);
             }
     
-            echo json_encode($com->getArray());
+            echo json_encode($fav->getArray());
         }
         catch(PDOException $e) {
             echo $e;
@@ -38,21 +37,20 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
     else {
         //Obtener TODOS los registros
         try {
-            $idpost = $_GET["idpost"];
-            //$query_string = 'SELECT * FROM publications';
-            $query = $connection->prepare('SELECT * FROM comentarios WHERE  idpost = :idpost');//Se le cambia el nombre ya sea photocard, cds, etc
-            $query->bindParam(':idpost',$idpost,PDO::PARAM_INT);
+            session_start();
+            $iduser = $_SESSION["id"];
+            $query = $connection->prepare('SELECT * FROM favoritos WHERE  iduser = :iduser');
+            $query->bindParam(':iduser',$iduser,PDO::PARAM_INT);
             $query->execute();
-            $coms = array();
+            $favs = array();
     
             while($row = $query->fetch(PDO::FETCH_ASSOC)) {
-                $com = new Coment($row['id'], $row['iduser'], $row['idpost'],$row['nombreuser'],
-                $row['texto']);
+                $fav = new Fav($row['id'], $row['iduser'], $row['idimg']);
     
-                $coms[] = $com->getArray();
+                $favs[] = $fav->getArray();
             }
     
-            echo json_encode($coms);
+            echo json_encode($favs);
         }
         catch(PDOException $e) {
             echo $e;
@@ -60,16 +58,14 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
     }
 }
 else if($_SERVER["REQUEST_METHOD"] === "POST"){
-    if(array_key_exists("texto",$_POST)){
-        //Utilizar el arreglo $_POS
-
+    if(array_key_exists("_method",$_POST)){
+        //Utilizar el arreglo $_POST   
         if($_POST["_method"] === "POST"){
             //Registro nuevo
             session_start();
             $iduser = $_SESSION["id"];
-            $idpost = $_POST["id"];
-            $nombreuser = $_SESSION["nombre"];
-            postComent($iduser,$idpost,$nombreuser,$_POST["texto"],true);//future
+            $idimg = $_POST["idpost"];
+            postFav($iduser,$idimg,true);//future
         }
         else if($_POST["_method"] === "PUT"){
             putComent($_POST["id"],$_POST["texto"],true);//future
@@ -83,15 +79,13 @@ else if($_SERVER["REQUEST_METHOD"] === "POST"){
    exit();
 }
 
-function postComent($iduser,$idpost,$nombreuser,$texto,$redirect){
+function postFav($iduser,$idimg,$redirect){
     global $connection;
 
     try{
-        $query = $connection->prepare('INSERT INTO comentarios VALUES(NULL,:iduser, :idpost,:nombreuser, :texto)');
+        $query = $connection->prepare('INSERT INTO favoritos VALUES(NULL,:iduser, :idimg)');
         $query->bindParam(':iduser', $iduser, PDO::PARAM_INT);
-        $query->bindParam(':idpost', $idpost, PDO::PARAM_INT);
-        $query->bindParam(':nombreuser', $nombreuser, PDO::PARAM_STR);
-        $query->bindParam(':texto', $texto, PDO::PARAM_STR);
+        $query->bindParam(':idimg', $idimg, PDO::PARAM_INT);
         $query->execute();
 
         if($query->rowCount() === 0){
@@ -100,7 +94,7 @@ function postComent($iduser,$idpost,$nombreuser,$texto,$redirect){
         else{
             // echo "Registro guardado";
             if($redirect){
-                header('Location: ' . $_SERVER['HTTP_REFERER']);//Aqui se le cambia la ruta a la página de productos actual
+                header('Location: http://localhost/proyectoavance3/views/home.php');//Aqui se le cambia la ruta a la página de productos actual
             }
             else{
                 echo "Registro guardado";
@@ -114,12 +108,14 @@ function postComent($iduser,$idpost,$nombreuser,$texto,$redirect){
 
 }
 
-function putComent($id,$texto,$redirect){
+function putFav($id,$iduser,$idimg,$imagen,$redirect){
     global $connection;
     try{
-        $query = $connection->prepare('UPDATE comentarios SET texto = :texto, WHERE id = :id');//Para actualizar es con una coma
-        $query->bindParam(':id', $id, PDO::PARAM_STR);
-        $query->bindParam(':texto', $texto, PDO::PARAM_STR);
+        $query = $connection->prepare('UPDATE favoritos SET iduser = :iduser,idimg = :idimg, imagen = :imagen WHERE id = :id');//Para actualizar es con una coma
+        $query->bindParam(':id', $id, PDO::PARAM_INT);
+        $query->bindParam(':iduser', $iduser, PDO::PARAM_INT);
+        $query->bindParam(':idimg', $idimg, PDO::PARAM_INT);
+        $query->bindParam(':imagen', $imagen, PDO::PARAM_STR);
         $query->execute();
 
         if($query->rowCount() === 0){
@@ -128,7 +124,7 @@ function putComent($id,$texto,$redirect){
         else{
             // echo "Registro guardado";
             if($redirect){
-                header('Location: ' . $_SERVER['HTTP_REFERER']);
+                header('Location: http://localhost/proyectoavance3/views/home.php');
             }
             else{
                 echo "Registro guardado";
@@ -141,11 +137,11 @@ function putComent($id,$texto,$redirect){
    }
 
 }
-function deleteComent($id, $redirect) {
+function deleteFav($id, $redirect) {
     global $connection;
 
     try {
-        $query = $connection->prepare('UPDATE comentarios WHERE id = :id');
+        $query = $connection->prepare('UPDATE favoritos WHERE id = :id');
         $query->bindParam(':id', $id, PDO::PARAM_INT);
         $query->execute();
 
@@ -154,7 +150,7 @@ function deleteComent($id, $redirect) {
         }
         else {
             if ($redirect) {
-                header('Location: ' . $_SERVER['HTTP_REFERER']);
+                header('Location: http://localhost/proyectoavance3/views/home.php');
             }
             else {
                 echo "Registro eliminado";

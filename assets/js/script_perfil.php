@@ -8,7 +8,7 @@ const textAreaEdit = document.getElementById("form-edit-text");
 const btnSaveEdit = document.getElementById("btnSaveEdit");*/
 //const keyList = "artList";
 
-const artList = document.getElementById("art-List");
+const nombre = document.getElementById("nombre");
 
 document.addEventListener("DOMContentLoaded", function() {
     //Agregar evento al formulario
@@ -47,7 +47,7 @@ function paintArts(list) {
         }          
         }      
     }
-        artList.innerHTML = html;
+        nombre.innerHTML = html;
 }
 
 function hideDelete() {
@@ -87,7 +87,7 @@ function deleteArt(id) {
 function editArt(id) {
     let xhttp = new XMLHttpRequest();
 
-    xhttp.open("GET", "../controllers/postController.php?id=" + id, true);
+    xhttp.open("GET", "../controllers/perfilController.php?id=" + id, true);
 
     xhttp.onreadystatechange = function() {
         if (this.readyState === 4) {

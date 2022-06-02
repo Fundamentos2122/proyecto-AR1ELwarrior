@@ -59,7 +59,7 @@
             <div>Art:25</div>
             </div>
 
-            <button class="edit" onclick="location.href='../views/editprofile.php'">EDIT PROFILE</button>
+            <!-- <button class="edit" onclick="location.href='../views/editprofile.php'">EDIT PROFILE</button> -->
             
         </div>
 
@@ -70,7 +70,7 @@
         </div>
 
         <div class="gallery">
-            <div><img  class="imgg" src="../imgs/favoritas.jpg" alt=""></div>
+            <div id="favList"></div>
         </div>
 
     </div>
@@ -83,5 +83,9 @@
             <li> <a href="../views/perfil.php"><img class="icon" src="../imgs/user.png" alt=""></a></li>
         </ul>
     </div>
+    <?php 
+        include("../assets/js/script_favoritos.php");
+       
+     ?>
 </body>
 </html>
