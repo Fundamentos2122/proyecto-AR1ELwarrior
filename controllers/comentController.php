@@ -14,6 +14,7 @@ catch(PDOException $e) {
 
 if ($_SERVER["REQUEST_METHOD"] === "GET") {
     if (array_key_exists("id", $_GET)) {
+
         //Obtener un solo registro
         try {
             $id = $_GET["id"];
@@ -28,14 +29,13 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
                 $com = new Coment($row['id'], $row['iduser'], $row['idpost'],$row['nombreuser'],
                  $row['texto']);
             }
-    
             echo json_encode($com->getArray());
         }
         catch(PDOException $e) {
             echo $e;
         }
     }
-    else {
+    else if (array_key_exists("idpost", $_GET)) {
         //Obtener TODOS los registros
         try {
             $idpost = $_GET["idpost"];

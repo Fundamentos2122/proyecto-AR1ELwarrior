@@ -28,6 +28,36 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // btnSaveEdit.addEventListener("click", saveEdit);
 });
+
+function getComs(art) {
+        let xhttp = new XMLHttpRequest();
+xhttp.open("GET",  `../controllers/comentController.php?idpost=${art.id}`, true);
+xhttp.onreadystatechange = function(){
+    if (this.readyState === 4) {
+        if (this.status === 200) {
+            console.log(this.responseText);
+            let list = JSON.parse(this.responseText);
+           paintComs(list,art.id);
+        }
+        else {
+            console.log("Error");
+        }
+    }
+};
+xhttp.send();
+}
+
+function paintComs(list,idpost) {
+for(var i = 0; i < list.length; i++) {
+    var post =  document.getElementById(`com-List${idpost}`); 
+    post.innerHTML +=
+    ` <div id="${list[i].id}" >
+            <div class="comentario">Comentario de ${list[i].nombreuser} : ${list[i].texto} </div>
+            </div>`; 
+}
+    
+}
+
 function paintArts(list) {
     let html = '';
     var usuario = <?php echo json_encode($_SESSION, JSON_HEX_TAG); ?>;
@@ -72,7 +102,7 @@ function paintArts(list) {
                     </div>
                     </form>
                 </div>
-                    <div class="info5"><div id= "com-List" class="comentario"> </div>  </div>  
+                    <div class="info5"><div id= "com-List${list[i].id}"  class="com-List"> </div>  </div>  
                 </div> 
             </div>`;
         }
@@ -110,7 +140,7 @@ function paintArts(list) {
                     </div>
                     </form>
                 </div>
-                    <div class="info5"><div id= "com-List" class="comentario"> </div>  </div>  
+                <div class="info5"><div id= "com-List${list[i].id}"  class="com-List"> </div>  </div>  
                 </div> 
             </div>`;
         }
@@ -150,7 +180,7 @@ function paintArts(list) {
                     </div>
                     </form>
                 </div>
-                    <div class="info5"><div id= "com-List" class="comentario"> </div>  </div>  
+                <div class="info5"><div id= "com-List${list[i].id}"  class="com-List"> </div>  </div>  
                 </div> 
             </div>`;
         }
@@ -184,12 +214,14 @@ function paintArts(list) {
                     </div>
                     </form>
                 </div>
-                    <div class="info5"> <div id= "com-List" class="comentario"> </div>  </div>  
+                <div class="info5"><div id= "com-List${list[i].id}"  class="com-List"> </div>  </div>  
                 </div> 
             </div>`;
         }
+
             
-        }      
+        }
+        getComs(list[i]);      
     }
         artList.innerHTML = html;
         
