@@ -57,12 +57,11 @@
             <div id="nombre"></div>
             <div>Watchers: 50</div>
             <div>Watching: 120</div>
-            <div>Art:25</div>
-            </div>
-
-           <!-- // <button class="edit" onclick="location.href='../views/editprofile.php'">EDIT PROFILE</button> -->
-            
+            <div>Art:25</div>         
         </div>
+        </div>
+<button class="edit" onclick="location.href='../views/editprofile.php'">EDIT PROFILE</button> 
+</div>
 
         <div class="opciones">
             <button class="i1icon" onclick="location.href='../views/perfil.php'"> GALLERY </button>

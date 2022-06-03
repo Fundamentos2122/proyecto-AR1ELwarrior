@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/d5ef93086f.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../assets/css/perfil.css">
     <title>Profile</title>
 </head>
@@ -57,9 +58,9 @@
             <div>Watchers: 50</div>
             <div>Watching: 120</div>
             <div>Art:25</div>
-            </div>
+        </div>
 
-            <!-- <button class="edit" onclick="location.href='../views/editprofile.php'">EDIT PROFILE</button> -->
+             <button class="edit" onclick="location.href='../views/editprofile.php'">EDIT PROFILE</button> 
             
         </div>
 
@@ -85,6 +86,7 @@
     </div>
     <?php 
         include("../assets/js/script_favoritos.php");
+        include("modalDeleteFav.php"); 
        
      ?>
 </body>

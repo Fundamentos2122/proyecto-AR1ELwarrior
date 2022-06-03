@@ -98,7 +98,7 @@ function paintArts(list) {
                     <div>
                     <input type="hidden" name="_method" value="POST">
                     <input type="hidden" name="id" value="${list[i].id}">
-                    <input name= "texto" class="comment" type="text" placeholder="Add a comment" width="50%"> </input>
+                    <input name= "texto" class="comment" type="text" placeholder="Add a comment" width="50%" required> </input>
                     </div>
                     </form>
                 </div>
@@ -136,7 +136,7 @@ function paintArts(list) {
                     <input type="hidden" name="id" value="${list[i].id}">
                     <input class="intitem" type="image"  src="../imgs/comment.png" width="100px" alt="Submit">
                     <div>
-                    <input name= "texto" class="comment" type="text" placeholder="Add a comment" width="50%"> </input>
+                    <input name= "texto" class="comment" type="text" placeholder="Add a comment" width="50%" required> </input>
                     </div>
                     </form>
                 </div>
@@ -153,7 +153,7 @@ function paintArts(list) {
             <div class="info2">
                 <div><img class="profimg" src="../imgs/pimg.jpg" alt=""></div>
                 <div> ${list[i].nombre}</div>
-                <button class="follow">FOLLOWING</button>
+                <button class="follow">YOUR PROFFILE</button>
                 <div class="options">
                 <button class="btn-option" onclick="editArt(${list[i].id})">
                         <i class="fa-solid fa-pen-to-square"></i>
@@ -176,7 +176,7 @@ function paintArts(list) {
                     <input type="hidden" name="id" value="${list[i].id}">
                     <input class="intitem" type="image"  src="../imgs/comment.png" width="100px" alt="Submit">
                     <div>
-                    <input name= "texto" class="comment" type="text" placeholder="Add a comment" width="50%"> </input>
+                    <input name= "texto" class="comment" type="text" placeholder="Add a comment" width="50%" required> </input>
                     </div>
                     </form>
                 </div>
@@ -210,7 +210,7 @@ function paintArts(list) {
                     <input type="hidden" name="id" value="${list[i].id}">s
                     <input class="intitem" type="image"  src="../imgs/comment.png" width="100px" alt="Submit">
                     <div>
-                    <input name= "texto" class="comment" type="text" placeholder="Add a comment" width="50%"> </input>
+                    <input name= "texto" class="comment" type="text" placeholder="Add a comment" width="50%" required> </input>
                     </div>
                     </form>
                 </div>

@@ -1,6 +1,7 @@
 <?php 
 
 include("../models/DB.php");
+include("../models/User.php");
 
 try {
     $connection = DBConnection::getConnection();
@@ -18,15 +19,12 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
             $query = $connection->prepare('SELECT * FROM usuarios WHERE id = :id');
             $query->bindParam(':id', $id, PDO::PARAM_INT);
             $query->execute();
-    
-            $art;
-
+            $user;
             while($row = $query->fetch(PDO::FETCH_ASSOC)) {
-                $art = new User($row['id'], $row['idUser'], $row['nombre'],$row['descripcion'],
-                 $row['imagen'], $row['genero'], $row['timestamp']);
-            }
-    
-            echo json_encode($art->getArray());
+                $user = new User($row['id'], $row['nombre'], $row['email'],$row['password'],
+                 $row['type']);
+            }    
+            echo json_encode($user->getArray());
         }
         catch(PDOException $e) {
             echo $e;
@@ -34,13 +32,16 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
     }
 }
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    if($_POST["_method"] === "PUT"){
+        putUser($_POST["nombre"],true);//future
+    }
+    else{
     //Obtener información del POST
     $nombre = trim($_POST["nombre"]);
     $email = trim($_POST["email"]);
     $password = trim($_POST["password"]);
     $password = password_hash($password, PASSWORD_DEFAULT);
     $type = "normal";
-
     try {
         $query = $connection->prepare('INSERT INTO usuarios VALUES(NULL, :nombre, :email,:password, :type)');
         $query->bindParam(':nombre', $nombre, PDO::PARAM_STR);
@@ -58,7 +59,36 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
     catch(PDOException $e) {
         echo $e;
-    }
+    }}
 }
 
+function putUser($nombre,$redirect){
+    global $connection;
+    session_start();
+    $id = $_SESSION["id"];
+    try{
+        $query = $connection->prepare('UPDATE usuarios SET nombre = :nombre WHERE id = :id');//Para actualizar es con una coma
+        $query->bindParam(':id', $id, PDO::PARAM_INT);
+        $query->bindParam(':nombre', $nombre, PDO::PARAM_STR);
+        $query->execute();
+
+        if($query->rowCount() === 0){
+            echo("404: Error en la actualización");
+        }
+        else{
+            // echo "Registro guardado";
+            if($redirect){
+                header('Location: ' . $_SERVER['HTTP_REFERER']);
+            }
+            else{
+                echo "Registro guardado";
+            }
+        }
+
+    }
+    catch(PDOException $e){
+        echo $e;
+   }
+
+}
 ?>

@@ -76,23 +76,25 @@
         <div class="info">
             <div class="personal">
                 <div class="minititle"> General information</div>
-                <form>
+                <form class="edit" id="form-user" action="../controllers/usersController.php" method="POST">
+                <input type="hidden" name="_method" value="PUT">
                     <div class="form-group">
-                        <label for=" username" class="form-label">USERNAME</label>
-                    <input type="text" class="form-control" name="username" placeholder="Username" autocomplete="off" required>
+                        <label for=" username" class="form-label">ACTUALIZAR NOMBRE DE USUARIO</label>
+                     <input type="text" class="form-control" name="nombre" placeholder=" New Username" autocomplete="off" required>
                     </div>
-                    <div class="form-group">
+
+                    <!-- <div class="form-group">
                         <label for="mail" class="form-label">EMAIL <br></label>
                     <input type="email" class="form-control" name="mail" placeholder="Password" required>
                     </div>
                     <div class="notif">
                         <input type="checkbox" class="form-keep" name="keep"  required>
                         <label for=" notif" class="form-labelkeep">Email notificacions</label>
-                    </div>
+                    </div>  -->
+                    <input type="submit" value="GUARDAR"> 
                 </form>
-                <input type="submit" value="SAVE"> 
             </div>
-            <div class="contra">
+            <!-- <div class="contra">
                 <div class="minititle"> Change password</div>
                 <form>
                     <div class="form-group">
@@ -109,10 +111,13 @@
                     </div>
                 </form>
                 <input type="submit" value="SAVE"> 
-            </div>
+            </div> -->
 
 
         </div>
     </div>
+    <?php 
+        include("../assets/js/script_edituser.php");
+     ?>
 </body>
 </html>

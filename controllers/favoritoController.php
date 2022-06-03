@@ -71,11 +71,11 @@ else if($_SERVER["REQUEST_METHOD"] === "POST"){
             putComent($_POST["id"],$_POST["texto"],true);//future
         }
     }
-    else if(array_key_exists("id",$_POST)){
-        if($_POST["_method"] === "DELETE"){//AGREGO ESTO Y LA FUNCION, SOLO POR FORMULARIO
-            deleteComent($_POST["id"],true);
-        }
-    }
+    else{
+        $data = json_decode(file_get_contents("php://input"));
+        if($data->_method === "DELETE")
+         deleteFav($data->id,true);
+     }
    exit();
 }
 
@@ -138,11 +138,13 @@ function putFav($id,$iduser,$idimg,$imagen,$redirect){
 
 }
 function deleteFav($id, $redirect) {
+    session_start();
+    $iduser = $_SESSION["id"];
     global $connection;
-
     try {
-        $query = $connection->prepare('UPDATE favoritos WHERE id = :id');
+        $query = $connection->prepare('DELETE FROM favoritos WHERE idimg = :id AND iduser = :iduser');
         $query->bindParam(':id', $id, PDO::PARAM_INT);
+        $query->bindParam(':iduser', $iduser, PDO::PARAM_INT);
         $query->execute();
 
         if($query->rowCount() === 0) {
@@ -150,7 +152,7 @@ function deleteFav($id, $redirect) {
         }
         else {
             if ($redirect) {
-                header('Location: http://localhost/proyectoavance3/views/home.php');
+                header('Location: ' . $_SERVER['HTTP_REFERER']);
             }
             else {
                 echo "Registro eliminado";

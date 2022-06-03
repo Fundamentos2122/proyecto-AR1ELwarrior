@@ -107,8 +107,23 @@ function postArt($iduser,$nombre,$descripcion,$imagen,$genero,$redirect){
     global $connection;
 
      $timestamp = date("Y-m-d H:i:s", $_SERVER['REQUEST_TIME']);
+     if($genero !== "fanart"){
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+     }
+    else if($genero !== "pixelart"){
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+     }
+    else if($genero !== "3d"){
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+     }
+    else if($genero !== "comic"){
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+     }
+    else if($genero !== "digital"){
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+     }
 
-
+else
     try{
         $query = $connection->prepare('INSERT INTO publications VALUES(NULL,:id, :nombre,:descripcion, :imagen, :genero, :timestamp)');
         $query->bindParam(':id', $iduser, PDO::PARAM_INT);
@@ -123,6 +138,9 @@ function postArt($iduser,$nombre,$descripcion,$imagen,$genero,$redirect){
             echo("404: Error en la inserción");
         }
         else{
+            if($query->rowCount() === 0){
+                echo("404: Error en la inserción");
+            }
             // echo "Registro guardado";
             if($redirect){
                 header('Location: http://localhost/proyectoavance3/views/home.php');//Aqui se le cambia la ruta a la página de productos actual

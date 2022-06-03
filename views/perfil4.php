@@ -55,7 +55,7 @@
             <div>Art:25</div>
             </div>
 
-            <!-- <button class="edit" onclick="location.href='../views/editprofile.php'">EDIT PROFILE</button> -->
+             <button class="edit" onclick="location.href='../views/editprofile.php'">EDIT PROFILE</button> 
             
         </div>
 

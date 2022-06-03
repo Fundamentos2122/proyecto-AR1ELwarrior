@@ -56,10 +56,10 @@
 
                 <form class="add" id="form-art" action="../controllers/postController.php" method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="_method" value="POST">
-                <div class="subblock">SELECT A FILE OR DRAG THE FILE TO SUBMIT <input type="file" class="art" name="imagen">
+                <div class="subblock">SELECT A FILE OR DRAG THE FILE TO SUBMIT <input type="file" class="art" name="imagen" required>
                 </div>
-                <input class="desc" name="genero" type="text" placeholder="Elige el genero del dibujo"> </input>
-                <input class="desc" name="descripcion" type="text" placeholder="Add a description or a comment"> </input>
+                <input class="desc" name="genero" type="text" placeholder="Elige el genero del dibujo" required> </input>
+                <input class="desc" name="descripcion" type="text" placeholder="Add a description or a comment" required> </input>
                 <div class="interact">
                 <input class="btn" type="submit" >
                 </div>
