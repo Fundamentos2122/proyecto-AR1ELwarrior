@@ -61,14 +61,13 @@ else if($_SERVER["REQUEST_METHOD"] === "POST"){
     if(array_key_exists("_method",$_POST)){
         //Utilizar el arreglo $_POST   
         if($_POST["_method"] === "POST"){
-            //Registro nuevo
             session_start();
             $iduser = $_SESSION["id"];
             $idimg = $_POST["idpost"];
-            postFav($iduser,$idimg,true);//future
+            postFav($iduser,$idimg,true);
         }
         else if($_POST["_method"] === "PUT"){
-            putComent($_POST["id"],$_POST["texto"],true);//future
+            putComent($_POST["id"],$_POST["texto"],true);
         }
     }
     else{
@@ -94,7 +93,7 @@ function postFav($iduser,$idimg,$redirect){
         else{
             // echo "Registro guardado";
             if($redirect){
-                header('Location: http://localhost/proyectoavance3/views/home.php');//Aqui se le cambia la ruta a la página de productos actual
+                header('Location: http://localhost/proyectoavance3/views/home.php');
             }
             else{
                 echo "Registro guardado";
@@ -111,7 +110,7 @@ function postFav($iduser,$idimg,$redirect){
 function putFav($id,$iduser,$idimg,$imagen,$redirect){
     global $connection;
     try{
-        $query = $connection->prepare('UPDATE favoritos SET iduser = :iduser,idimg = :idimg, imagen = :imagen WHERE id = :id');//Para actualizar es con una coma
+        $query = $connection->prepare('UPDATE favoritos SET iduser = :iduser,idimg = :idimg, imagen = :imagen WHERE id = :id');
         $query->bindParam(':id', $id, PDO::PARAM_INT);
         $query->bindParam(':iduser', $iduser, PDO::PARAM_INT);
         $query->bindParam(':idimg', $idimg, PDO::PARAM_INT);

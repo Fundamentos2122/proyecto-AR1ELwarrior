@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
         try {
             $idpost = $_GET["idpost"];
             //$query_string = 'SELECT * FROM publications';
-            $query = $connection->prepare('SELECT * FROM comentarios WHERE  idpost = :idpost');//Se le cambia el nombre ya sea photocard, cds, etc
+            $query = $connection->prepare('SELECT * FROM comentarios WHERE  idpost = :idpost');
             $query->bindParam(':idpost',$idpost,PDO::PARAM_INT);
             $query->execute();
             $coms = array();
@@ -69,14 +69,14 @@ else if($_SERVER["REQUEST_METHOD"] === "POST"){
             $iduser = $_SESSION["id"];
             $idpost = $_POST["id"];
             $nombreuser = $_SESSION["nombre"];
-            postComent($iduser,$idpost,$nombreuser,$_POST["texto"],true);//future
+            postComent($iduser,$idpost,$nombreuser,$_POST["texto"],true);
         }
         else if($_POST["_method"] === "PUT"){
-            putComent($_POST["id"],$_POST["texto"],true);//future
+            putComent($_POST["id"],$_POST["texto"],true);
         }
     }
     else if(array_key_exists("id",$_POST)){
-        if($_POST["_method"] === "DELETE"){//AGREGO ESTO Y LA FUNCION, SOLO POR FORMULARIO
+        if($_POST["_method"] === "DELETE"){
             deleteComent($_POST["id"],true);
         }
     }
@@ -100,7 +100,7 @@ function postComent($iduser,$idpost,$nombreuser,$texto,$redirect){
         else{
             // echo "Registro guardado";
             if($redirect){
-                header('Location: ' . $_SERVER['HTTP_REFERER']);//Aqui se le cambia la ruta a la página de productos actual
+                header('Location: ' . $_SERVER['HTTP_REFERER']);
             }
             else{
                 echo "Registro guardado";
@@ -117,7 +117,7 @@ function postComent($iduser,$idpost,$nombreuser,$texto,$redirect){
 function putComent($id,$texto,$redirect){
     global $connection;
     try{
-        $query = $connection->prepare('UPDATE comentarios SET texto = :texto, WHERE id = :id');//Para actualizar es con una coma
+        $query = $connection->prepare('UPDATE comentarios SET texto = :texto, WHERE id = :id');
         $query->bindParam(':id', $id, PDO::PARAM_STR);
         $query->bindParam(':texto', $texto, PDO::PARAM_STR);
         $query->execute();

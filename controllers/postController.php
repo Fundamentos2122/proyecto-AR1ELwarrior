@@ -107,23 +107,7 @@ function postArt($iduser,$nombre,$descripcion,$imagen,$genero,$redirect){
     global $connection;
 
      $timestamp = date("Y-m-d H:i:s", $_SERVER['REQUEST_TIME']);
-     if($genero !== "fanart"){
-        header('Location: ' . $_SERVER['HTTP_REFERER']);
-     }
-    else if($genero !== "pixelart"){
-        header('Location: ' . $_SERVER['HTTP_REFERER']);
-     }
-    else if($genero !== "3d"){
-        header('Location: ' . $_SERVER['HTTP_REFERER']);
-     }
-    else if($genero !== "comic"){
-        header('Location: ' . $_SERVER['HTTP_REFERER']);
-     }
-    else if($genero !== "digital"){
-        header('Location: ' . $_SERVER['HTTP_REFERER']);
-     }
-
-else
+     if($genero === "fanart" ||$genero === "3d"||$genero === "comic"||$genero === "digital"||$genero === "pixelart" ){
     try{
         $query = $connection->prepare('INSERT INTO publications VALUES(NULL,:id, :nombre,:descripcion, :imagen, :genero, :timestamp)');
         $query->bindParam(':id', $iduser, PDO::PARAM_INT);
@@ -153,6 +137,11 @@ else
     }
     catch(PDOException $e){
         echo $e;
+    }
+}
+    else{
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+
     }
 
 }

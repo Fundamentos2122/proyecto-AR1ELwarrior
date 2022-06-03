@@ -89,14 +89,14 @@ else if($_SERVER["REQUEST_METHOD"] === "POST"){
             session_start();
             $iduser = $_SESSION["id"];
             $nombre = $_SESSION["nombre"];
-            postArt($iduser,$nombre,$_POST["descripcion"],$photo,$_POST["genero"],true);//future
+            postArt($iduser,$nombre,$_POST["descripcion"],$photo,$_POST["genero"],true);
         }
         else if($_POST["_method"] === "PUT"){
-            putArt($iduser,$_POST["nombre"],$_POST["descripcion"],$_POST["imagen"],$_POST["genero"],$_POST["timestamp"],true);//future
+            putArt($iduser,$_POST["nombre"],$_POST["descripcion"],$_POST["imagen"],$_POST["genero"],$_POST["timestamp"],true);
         }
     }
     else if(array_key_exists("id",$_POST)){
-        if($_POST["_method"] === "DELETE"){//AGREGO ESTO Y LA FUNCION, SOLO POR FORMULARIO
+        if($_POST["_method"] === "DELETE"){
             deleteArt($_POST["id"],true);
         }
     }
@@ -125,7 +125,7 @@ function postArt($iduser,$nombre,$descripcion,$imagen,$genero,$redirect){
         else{
             // echo "Registro guardado";
             if($redirect){
-                header('Location: http://localhost/proyectoavance3/views/home.php');//Aqui se le cambia la ruta a la página de productos actual
+                header('Location: http://localhost/proyectoavance3/views/home.php');
             }
             else{
                 echo "Registro guardado";
